@@ -12,8 +12,8 @@ Ansible Pull playbook for setting up new machines.
       - https://docs.ansible.com/
     - Jay LaCroix at learnlinux.tv
       - https://www.youtube.com/watch?v=3RiVKs8GHYQ&list=PLT98CRl2KxKEUHie1m24-wkyHpEsa4Y70
-    - Check out Jay's Udemy class.
-      - https://www.udemy.com/course/lpi-le-workshop/?couponCode=LEARNNOWPLANS
+      - Check out Jay's Udemy class.
+        - https://www.udemy.com/course/lpi-le-workshop/?couponCode=LEARNNOWPLANS
       - Jay's opensource.com Ansible Articles
         - Part 1: https://opensource.com/article/18/3/manage-workstation-ansible
         - Part 2: https://opensource.com/article/18/3/manage-your-workstation-configuration-ansible-part-2
