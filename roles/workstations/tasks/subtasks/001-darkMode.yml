@@ -1,0 +1,89 @@
+#-----------------Set Gnome to Dark Mode------------------#
+- name: Installing Python PSUtilities
+  ansible.builtin.package:
+    state: latest
+    name:
+      - python3-psutil
+  when: ansible_os_family == "Debian"
+
+- name: Setting Color Theme to Dark Mode
+  become_user: jpatr
+  community.general.dconf:
+    key: "/org/gnome/desktop/interface/color-scheme"
+    value: "'prefer-dark'"
+    state: present
+
+- name: Setting GTK-Theme to Dark Mode
+  become_user: jpatr
+  community.general.dconf:
+    key: "/org/gnome/desktop/interface/trk-theme"
+    value: "'prefer-dark'"
+    state: present
+
+#-----------------Set Gnome Background------------------#
+- name: Creating Background Folder
+  ansible.builtin.file:
+    path: /usr/share/backgrounds/jsquared
+    state: directory
+    mode: "0755"
+    owner: root
+    group: root
+
+- name: Copying Dark Background Image
+  ansible.builtin.copy:
+    src: ../files/JSBackground.dark.png
+    dest: /usr/share/backgrounds/jsquared/JSBackground.dark.png
+    mode: "0644"
+    owner: root
+    group: root
+    decrypt: true
+
+- name: Copying Light Background Image
+  ansible.builtin.copy:
+    src: ../files/JSBackground.light.png
+    dest: /usr/share/backgrounds/jsquared/JSBackground.light.png
+    mode: "0644"
+    owner: root
+    group: root
+    decrypt: true
+
+- name: Setting Light Background Image
+  become_user: jpatr
+  community.general.dconf:
+    key: "/org/gnome/desktop/background/picture-uri"
+    value: "'file:///usr/share/backgrounds/jsquared/JSBackground.light.png'"
+    state: present
+
+- name: Setting Dark Background Image
+  become_user: jpatr
+  community.general.dconf:
+    key: "/org/gnome/desktop/background/picture-uri-dark"
+    value: "'file:///usr/share/backgrounds/jsquared/JSBackground.dark.png'"
+    state: present
+
+- name: Setting Background to Scale Image
+  become_user: jpatr
+  community.general.dconf:
+    key: "/org/gnome/desktop/background/picture-options"
+    value: "'scaled'"
+    state: present
+
+- name: Setting Background Color
+  become_user: jpatr
+  community.general.dconf:
+    key: "/org/gnome/desktop/background/primary-color"
+    value: "'000000'"
+    state: present
+
+#-----------------Set Gnome Terminal Profile------------------#
+- name: Copying terminal profile locally
+  ansible.builtin.copy:
+    src: ../files/gnome-terminal-prfiles.dconf
+    dest: /home/jpatr/.tmp/gnome-terminal-prfiles.dconf
+    mode: "0755"
+    owner: jpatr
+    group: jpatr
+
+- name: Importing Profile
+  ansible.builtin.shell: dconf load /org/gnome/terminal/legacy/profiles:/ < /home/jpatr/.tmp/gnome-terminal-prfiles.dconf
+  become_user: jpatr
