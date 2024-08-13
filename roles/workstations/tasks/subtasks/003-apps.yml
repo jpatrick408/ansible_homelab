@@ -1,0 +1,17 @@
+- name: Installing Laptop Apps
+  ansible.builtin.package:
+    state: latest
+    name:
+      - putty
+      - soundconverter
+      - soundkonverter
+      - gtkterm
+      - vlc
+      - wine
+      - gparted
+#      - neofetch
+
+- name: Installing Handbrake from Flathub
+  community.general.flatpak:
+    name: fr.handbrake.ghb
+    state: present
