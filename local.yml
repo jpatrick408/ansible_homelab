@@ -1,0 +1,44 @@
+---
+- hosts: all
+  become: true
+
+  pre_tasks:
+  - name: Creatig temp folder
+    tags: always
+    ansible.builtin.file:
+      path: /home/jpatr/.tmp
+      state: directory
+      mode: '0777'
+
+  - name: Update all packages (Debian based)
+    tags: always
+    ansible.builtin.apt:
+      update_cache: yes
+      upgrade: dist
+    when: ansible_os_family == "Deian"
+
+  - name: Update all packages (Fedora based)
+    tags: always
+    ansible.builtin.dnf:
+      update_cache: yes
+      update_only: yes
+    when: ansible_os_family == "RedHat"
+
+- hosts: all
+  become: true
+
+  tasks:
+    - name: Basic Setup
+      tags: always
+      import_role:
+        name: basic_setup
+
+- hosts: all
+  become: true
+
+  tasks:
+    - name: Workstation setup
+      tags: workstations
+      import_role:
+        name: workstation_setup
+      when: inventory_hostname in groups["workstations"]

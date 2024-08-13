@@ -1,0 +1,21 @@
+- name: Install Common Apps
+  ansible.builtin.package:
+    state: latest
+    name:
+      - colordiff
+      - tmux
+      - wget
+      - curl
+
+- name: Install Build Essentials (Debian Based)
+  ansible.builtin.apt:
+    state: latest
+    name: build-essential
+  when: ansible_os_family == "Debian"
+
+- name: Install Build Essentials (Fedora Based)
+  ansible.builtin.dnf:
+    name:
+      - '@Development tools'
+      - '@Development Libraries'
+  when: ansible_os_family == "RedHat"

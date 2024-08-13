@@ -1,0 +1,6 @@
+- ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
+
+- block:
+  - ansible.builtin.import_tasks: subtasks/001_microcode.yml
+  - ansible.builtin.import_tasks: subtasks/002_commonApps.yml
+  - ansible.builtin.import_tasks: subtasks/003_autoRemove.yml

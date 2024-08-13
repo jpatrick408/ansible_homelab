@@ -1,0 +1,28 @@
+---
+servers:
+  hosts:
+#    jsdocker:
+    jsgit:
+#    jspterodactyl:
+    jsspeedtest:
+    jsstreaming:
+#    jsansible:
+    jsunifi:
+
+rpis:
+  hosts:
+#    jsansible:
+    jsunifi:
+
+workstations:
+  hosts:
+    jslaptop:
+    jsoffice:
+    jssurfacebook:
+    jstestdell1:
+    jstestdell2:
+    172.16.25.101:
+
+desktop:
+  hosts:
+    jsoffice:

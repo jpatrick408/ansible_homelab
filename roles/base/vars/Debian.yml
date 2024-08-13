@@ -1,0 +1,6 @@
+amd_microcode_package: amd64-microcode
+intel_microcode_package: intel-microcode
+lm_sensors_package: lm-sensors
+nfs_client_package: nfs-common
+openssh_service: ssh
+py_psutils: python3-psutil
