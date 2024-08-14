@@ -23,4 +23,4 @@
   community.general.flatpak:
     name: fr.handbrake.ghb
     state: present
-
+  when: ansible_os_family == "RedHat"
