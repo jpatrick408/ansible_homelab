@@ -11,7 +11,16 @@
       - gparted
 #      - neofetch
 
+- name: Installing PSUtils
+  ansible.builtin.package:
+    state: latest
+    name:
+      - psutils
+      - python3-psutil
+  when: ansible_os_family == "RedHat"
+
 - name: Installing Handbrake from Flathub
   community.general.flatpak:
     name: fr.handbrake.ghb
     state: present
+
