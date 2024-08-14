@@ -40,5 +40,5 @@
     - name: Workstation setup
       tags: workstations
       import_role:
-        name: workstation_setup
+        name: workstations_setup
       when: inventory_hostname in groups["workstations"]
