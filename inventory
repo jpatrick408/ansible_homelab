@@ -22,6 +22,7 @@ workstations:
     jstestdell1:
     jstestdell2:
     172.16.25.101:
+    testvm:
 
 desktop:
   hosts:
