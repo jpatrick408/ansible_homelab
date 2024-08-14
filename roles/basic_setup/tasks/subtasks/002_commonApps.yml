@@ -1,5 +1,6 @@
 - name: Install Common Apps
   ansible.builtin.package:
+  tags: always
     state: latest
     name:
       - colordiff
@@ -9,12 +10,14 @@
 
 - name: Install Build Essentials (Debian Based)
   ansible.builtin.apt:
+  tags: always
     state: latest
     name: build-essential
   when: ansible_os_family == "Debian"
 
 - name: Install Build Essentials (Fedora Based)
   ansible.builtin.dnf:
+  tags: always
     name:
       - '@Development tools'
       - '@Development Libraries'
