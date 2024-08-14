@@ -1,9 +1,11 @@
 - name: Auto Removing Uneeded Apps (Debian Based)
+  tags: always
   ansible.builtin.apt:
     autoremove: yes
   when: ansible_os_family == "Debian"
 
 - name: Auto Removing Uneeded Apps (Fedorian Based)
+  tags: always
   ansible.builtin.dnf:
     autoremove: yes
   when: ansible_os_family == "RedHat"
