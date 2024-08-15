@@ -20,8 +20,7 @@ workstations:
     jsoffice:
     jssurfacebook:
     jstestdell1:
-    jstestdell2.jsq.js:
-    172.16.25.101:
+    jstestdell2:
     testvm:
 
 desktop:
