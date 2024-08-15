@@ -16,7 +16,7 @@
     ansible.builtin.apt:
       update_cache: yes
       upgrade: dist
-    when: ansible_os_family == "Deian"
+    when: ansible_os_family == "Debian"
 
   - name: Update all packages (Fedora based)
     tags: always
