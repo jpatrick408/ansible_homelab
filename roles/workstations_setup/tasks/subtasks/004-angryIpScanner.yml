@@ -28,23 +28,23 @@
   
 - name: Install the Latest Version of AngryIP Scanner (Fedora Based Systems)
   ansible.builtin.dnf:
-    name: /home/[YOUR USERNAME]/.tmp/IPScan.rpm
+    name: /home/{{ ansible_user }}/.tmp/IPScan.rpm
     disable_gpg_check: true
   when: ansible_os_family == "RedHat"
 
 - name: Install the Latest Version of AngryIP Scanner (Debian Based)
   ansible.builtin.apt:
-    deb: /home/[YOUR USERNAME]/.tmp/IPScan.deb
+    deb: /home/{{ ansible_user }}/.tmp/IPScan.deb
   when: ansible_os_family == "Debian"
 
 - name: Delete RPM file (Fedora Based Systems)
   ansible.builtin.file:
-    path: /home/[YOUR USERNAME]/.tmp/IPScan.rpm
+    path: /home/{{ ansible_user }}/.tmp/IPScan.rpm
     state: absent
   when: ansible_os_family == "RedHat"
   
 - name: Delete RPM file (Debian based Systems)
   ansible.builtin.file:
-    path: /home/[YOUR USERNAME]/.tmp/IPScan.deb
+    path: /home/{{ ansible_user }}/.tmp/IPScan.deb
     state: absent
   when: ansible_os_family == "Debian"
