@@ -1,0 +1,56 @@
+- name: Installing Open JDK Runtime (Debian Based Systems)
+  ansible.builtin.package:
+    state: latest
+    name: default-jre
+  when: ansible_os_family == "Debian"
+
+- name: Lookup the Latest Version of AngryIP Scanner
+  ansible.builtin.uri:
+    url: https://api.github.com/repos/angryip/ipscan/tags
+    return_content: yes
+    status_code: 200
+    body_format: json
+  register: result
+
+#Fedora Based Download
+- name: Download the Latest Version of AngryIP Scanner (Fedora Based Systems)
+  ansible.builtin.get_url:
+    url: https://github.com/angryip/ipscan/releases/download/{{ result.json[0].name }}/ipscan-{{ result.json[0].name }}-1.x86_64.rpm
+    dest: /home/[YOUR USERNAME]/.tmp/IPScan.rpm
+    mode: 0777
+  when: ansible_os_family == "RedHat"
+
+#Fedora Based Install
+- name: Install the Latest Version of AngryIP Scanner (Fedora Based Systems)
+  ansible.builtin.dnf:
+    name: /home/[YOUR USERNAME]/.tmp/IPScan.rpm
+    disable_gpg_check: true
+  when: ansible_os_family == "RedHat"
+
+#Fedora Based Clean
+- name: Delete RPM file (Fedora Based Systems)
+  ansible.builtin.file:
+    path: /home/[YOUR USERNAME]/.tmp/IPScan.rpm
+    state: absent
+  when: ansible_os_family == "RedHat"
+
+#Debian Based Download
+- name: Downloaded the Latest Version of Angry IP Scanner (DebianBased Systems)
+  ansible.builtin.get_url:
+    url: https://github.com/angryip/ipscan/releases/download/3.9.1/ipscan_{{ result.json[0].name }}_all.deb
+    dest: /home/[YOUR USERNAME]/.tmp/IPScan.deb
+    mode: 0777
+  when: ansible_os_family == "Debian"
+
+#Debian Based Install
+- name: Install the Latest Version of AngryIP Scanner (Debian Based)
+  ansible.builtin.apt:
+    deb: /home/[YOUR USERNAME]/.tmp/IPScan.deb
+  when: ansible_os_family == "Debian"
+
+#Debian Based Clean
+- name: Delete RPM file (Debian based Systems)
+  ansible.builtin.file:
+    path: /home/[YOUR USERNAME]/.tmp/IPScan.deb
+    state: absent
+  when: ansible_os_family == "Debian"
