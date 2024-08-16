@@ -1,0 +1,47 @@
+- name: Lookup the Latest Version of Draw.IO
+  ansible.builtin.uri:
+    url: https://api.github.com/repos/jgraph/drawio-desktop/tags
+    return_content: yes
+    status_code: 200
+    body_format: json
+  register: result
+- debug:
+    msg: "{{ result.json[1].name }}"
+  ignore_errors: true
+
+- name: Downloading the Latest Version of DrawIO (Fedora Based Systems)
+  ansible.builtin.get_url:
+    url: https://github.com/jgraph/drawio-desktop/releases/download/v{{ result.json[1].name | regex_replace("[^0-9.]", "") }}/drawio-x86_64-{{ result.json[1].name | regex_replace("[^0-9.]", "") }}.rpm
+    dest: /tmp/drawIO.rpm
+    mode: 0777
+  when: ansible_os_family == "RedHat"
+
+- name: Downloading the Latest Version of DrawIO (Debian Based Systems)
+  ansible.builtin.get_url:
+    url: https://github.com/jgraph/drawio-desktop/releases/download/v{{ result.json[1].name | regex_replace("[^0-9.]", "") }}/drawio-amd64-{{ result.json[1].name | regex_replace("[^0-9.]", "") }}.deb
+    dest: /tmp/drawIO.deb
+    mode: 0777
+  when: ansible_os_family == "Debian"
+  
+  - name: Instalinng  the Latest Version of DrawIO (Fedora Based Systems)
+    ansible.builtin.dnf:
+      name: /tmp/drawIO.rpm
+      disable_gpg_check: true
+  when: ansible_os_family == "RedHat"
+
+- name: Installing the Latest Version of DrawIO (Debian Based Systems)
+  ansible.builtin.apt:
+    deb: /tmp/drawIO.deb
+  when: ansible_os_family == "Debian"
+  
+  - name: Deleting the Installer (Fedora Based Systems)
+  ansible.builtin.file:
+    path: /tmp/drawIO.rpm
+    state: absent
+  when: ansible_os_family == "RedHat"
+
+- name: Deleting Installer (Debian Based Systems)
+  ansible.builtin.file:
+    path: /tmp/drawIO.deb
+    state: absent
+  when: ansible_os_family == "Debian"
