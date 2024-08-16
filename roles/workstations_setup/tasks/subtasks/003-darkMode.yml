@@ -7,14 +7,14 @@
   when: ansible_os_family == "Debian"
 
 - name: Setting Color Theme to Dark Mode
-  become_user: {{ invoking_user }}
+  become_user: "{{ invoking_user }}"
   community.general.dconf:
     key: "/org/gnome/desktop/interface/color-scheme"
     value: "'prefer-dark'"
     state: present
 
 - name: Setting GTK-Theme to Dark Mode
-  become_user: {{ invoking_user }}
+  become_user: "{{ invoking_user }}"
   community.general.dconf:
     key: "/org/gnome/desktop/interface/trk-theme"
     value: "'prefer-dark'"
@@ -48,28 +48,28 @@
     decrypt: true
 
 - name: Setting Light Background Image
-  become_user: {{ invoking_user }}
+  become_user: "{{ invoking_user }}"
   community.general.dconf:
     key: "/org/gnome/desktop/background/picture-uri"
     value: "'file:///usr/share/backgrounds/jsquared/JSBackground.light.png'"
     state: present
 
 - name: Setting Dark Background Image
-  become_user: {{ invoking_user }}
+  become_user: "{{ invoking_user }}"
   community.general.dconf:
     key: "/org/gnome/desktop/background/picture-uri-dark"
     value: "'file:///usr/share/backgrounds/jsquared/JSBackground.dark.png'"
     state: present
 
 - name: Setting Background to Scale Image
-  become_user: {{ invoking_user }}
+  become_user: "{{ invoking_user }}"
   community.general.dconf:
     key: "/org/gnome/desktop/background/picture-options"
     value: "'scaled'"
     state: present
 
 - name: Setting Background Color
-  become_user: {{ invoking_user }}
+  become_user: "{{ invoking_user }}"
   community.general.dconf:
     key: "/org/gnome/desktop/background/primary-color"
     value: "'000000'"
@@ -79,11 +79,11 @@
 - name: Copying terminal profile locally
   ansible.builtin.copy:
     src: ../files/gnome-terminal-prfiles.dconf
-    dest: /home/{{ invoking_user }}/.tmp/gnome-terminal-prfiles.dconf
+    dest: /home/"{{ invoking_user }}"/.tmp/gnome-terminal-prfiles.dconf
     mode: "0755"
-    owner: {{ invoking_user }}
-    group: {{ invoking_user }}
+    owner: "{{ invoking_user }}"
+    group: "{{ invoking_user }}"
 
 - name: Importing Profile
-  ansible.builtin.shell: dconf load /org/gnome/terminal/legacy/profiles:/ < /home/{{ invoking_user }}/.tmp/gnome-terminal-prfiles.dconf
-  become_user: {{ invoking_user }}
+  ansible.builtin.shell: dconf load /org/gnome/terminal/legacy/profiles:/ < /home/"{{ invoking_user }}"/.tmp/gnome-terminal-prfiles.dconf
+  become_user: "{{ invoking_user }}"
