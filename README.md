@@ -24,3 +24,5 @@ Ansible Pull playbook for setting up new machines.
       - https://www.youtube.com/watch?v=w9eCU4bGgjQ
     - Google
       - There are a couple other sources not mentioned.  For those sources, I left comments in the playbooks.
+      - https://groups.google.com/g/ansible-project/c/bjiff3ORpSA?pli=1 for the following little code.
+        - -e invoking_user=${USER}

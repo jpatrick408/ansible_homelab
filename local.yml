@@ -7,7 +7,7 @@
   - name: Creatig temp folder
     tags: always
     ansible.builtin.file:
-      path: /home/jpatr/.tmp
+      path: /home/{{ invoking_user }}/.tmp
       state: directory
       mode: '0777'
 
