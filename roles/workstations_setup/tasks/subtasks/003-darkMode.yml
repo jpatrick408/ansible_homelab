@@ -81,8 +81,8 @@
     src: ../files/gnome-terminal-prfiles.dconf
     dest: /home/{{ invoking_user }}/.tmp/gnome-terminal-prfiles.dconf
     mode: "0755"
-    owner: {{ invoking_user }}
-    group: {{ invoking_user }}
+    owner: "{{ invoking_user }}"
+    group: "{{ invoking_user }}"
 
 - name: Importing Profile
   ansible.builtin.shell: dconf load /org/gnome/terminal/legacy/profiles:/ < /home/"{{ invoking_user }}"/.tmp/gnome-terminal-prfiles.dconf
