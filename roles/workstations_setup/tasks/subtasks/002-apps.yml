@@ -9,6 +9,7 @@
       - vlc
       - wine
       - gparted
+      - syncthing
 #      - neofetch
 
 - name: Installing PSUtils
