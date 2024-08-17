@@ -1,0 +1,63 @@
+- name: Installing Virtualbox (Debian Based)
+  ansible.builtin.package:
+    state: latest
+    name:
+      - Virtualbox
+      - virtualbox-dkms
+      - virtualbox-ext-pack
+      - virtualbox-guest-additions-iso
+
+- name: Importing VirtualBox Key (Fedora Based OS)
+  ansible.builtin.rpm_key:
+    key: https://www.virtualbox.org/download/oracle_vbox_2016.asc
+  when: ansible_os_family == "RedHat"
+
+- name: Adding VirtualBox Repo (Fedora Based OS)
+  ansible.builtin.yum_repository:
+    name: virtualbox
+    description: Fedora $releasever - $basearch - VirtualBox
+    baseurl: http://download.virtualbox.org/virtualbox/rpm/fedora/$releasever/$basearch
+    enabled: yes
+    gpgcheck: yes
+    repo_gpgcheck: true
+    gpgkey: https://www.virtualbox.org/download/oracle_vbox_2016.asc
+  when: ansible_os_family == "RedHat"
+
+- name: Installing VirtualBox (Fedora Based)
+  ansible.builtin.package:
+    name:
+      - kernel-devel
+      - akmod-VirtualBox
+      - VirtualBox
+    state: latest
+  when: ansible_os_family == "RedHat"
+
+- name: Capturing VirtualBox Edition
+  ansible.builtin.shell: vboxmanage --version
+  register:  VBResults
+- debug:
+    msg: "{{ VBResults.stdout[:6] }}"
+  ignore_errors: true
+
+- name: Downloading VirtualBox Extension Pack
+  ansible.builtin.get_url:
+    url: https://download.virtualbox.org/virtualbox/{{ VBResults.stdout[:6] }}/Oracle_VM_VirtualBox_Extension_Pack-{{ VBResults.stdout[:6]  }}.vbox-extpack
+    dest: /home/jpatr/.tmp//Oracle_VM_VirtualBox_Extension_Pack-{{ VBResults.stdout[:6]  }}.vbox-extpack
+    mode: '0777'
+
+  #Thanks to the VBox forum for the echo trick (https://forums.virtualbox.org/viewtopic.php?p=427956#p427956)
+- name: Installing Extensions
+  ansible.builtin.shell:
+    cmd: echo y | VBoxManage extpack install --replace Oracle_VM_VirtualBox_Extension_Pack-{{ VBResults.stdout[:6]  }}.vbox-extpack
+    chdir: /home/jpatr/.tmp/
+
+- name: Cleaning Temp File
+  ansible.builtin.file:
+    path: /home/jpatr/.tmp//Oracle_VM_VirtualBox_Extension_Pack-{{ VBResults.stdout[:6]  }}.vbox-extpack
+    state: absent
+
+- name: Adding user to vboxusers group.
+  ansible.builtin.user:
+    name: jpatr
+    groups: vboxusers
+    append: yes
