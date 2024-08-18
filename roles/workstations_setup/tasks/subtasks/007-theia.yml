@@ -1,0 +1,14 @@
+- name: Creating Theia folder
+  ansible.builtin.file:
+    path: /home/jpatr/AppImages
+    state: directory
+    owner: jpatr
+    group: jpatr
+
+- name: Downloading Theia
+  ansible.builtin.get_url:
+    url: https://www.eclipse.org/downloads/download.php?file=/theia/ide/latest/linux/TheiaIDE.AppImage&r=1
+    dest: /home/jpatr/AppImages/TheiaIDE.AppImage
+    owner: jpatr
+    group: jpatr
+    mode: "0770"

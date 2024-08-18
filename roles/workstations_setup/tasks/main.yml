@@ -8,4 +8,4 @@
   - ansible.builtin.import_tasks: subtasks/004-angryIpScanner.yml
   - ansible.builtin.import_tasks: subtasks/005-drawIO.yml
   - ansible.builtin.import_tasks: subtasks/006-virtualBox.yml
-#  - ansible.builtin.import_tasks: subtasks/007-theia.yml
+  - ansible.builtin.import_tasks: subtasks/007-theia.yml
