@@ -6,6 +6,7 @@
       - virtualbox-dkms
 #      - virtualbox-ext-pack
       - virtualbox-guest-additions-iso
+  when: ansible_os_family == "Debian"
 
 - name: Importing VirtualBox Key (Fedora Based OS)
   ansible.builtin.rpm_key:
