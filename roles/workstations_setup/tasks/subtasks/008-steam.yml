@@ -1,0 +1,10 @@
+- name: Installing Valve's Steam depencies (Debian Based)
+  ansible.builtin.apt:
+    state: latest
+    name: steam-libs
+  when: ansible_os_family == "Debian"
+
+- name: Install Valve's Steam
+  ansible.builtin.package:
+    state: latest
+    name: "{{ steam_package }}"

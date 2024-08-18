@@ -1,5 +1,2 @@
 py_psutils: python3-psutil
-vbox_package: virtualbox
-vbox_ext_package: virtualbox-ext-pack
-vbox_guest_add_package: virtualbox-guest-additions-iso
-vbox_dkms_package: virtualbox-dkms
+steam_package: steam-installer
