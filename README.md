@@ -25,6 +25,6 @@ Ansible Pull playbook for setting up new machines.
     - Google
       - https://groups.google.com/g/ansible-project/c/bjiff3ORpSA?pli=1 for the following little code.
         - -e invoking_user=${USER}
-          - Add this to your ansible-pull command to username of the use.  See below for example.
+          - Add this to your ansible-pull command to define the current username and allow the play to run correctly.  See below for example.
             - ansible-pull -U git@github.com:jpatrick408/ansible_homelab.git --tags always,workstations --ask-become-password --vault-password-file [VAULT_FILE_LOCATION] -e invoking_user=${USER}
       - There are some sources not mentioned here.  For those sources, I left comments in the playbooks.
