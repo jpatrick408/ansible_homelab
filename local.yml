@@ -25,17 +25,17 @@
       update_only: yes
     when: ansible_os_family == "RedHat"
 
-- name: Checking First Run
-  tags: always
-  stat:
-    path: /home/{{ invoking_user }}/.firstRun
-  register: result
+  - name: Checking First Run
+    tags: always
+    stat:
+      path: /home/{{ invoking_user }}/.firstRun
+    register: result
 
-- name: Reboot if this is the first time running the playbook
-  tags: always
-  import_role:
-    name: reboot_device
-  when: not result.stat.exists
+  - name: Reboot if this is the first time running the playbook
+    tags: always
+    import_role:
+      name: reboot_device
+    when: not result.stat.exists
 
 - hosts: all
   become: true
