@@ -1,7 +1,7 @@
 - name: Create First Run file.
   ansible.builtin.file:
     path:  /home/{{ invoking_user }}/.firstRun
-    stat: touch
+    state: touch
     mode: '077'
 
 - name: Rebooting Machine
