@@ -33,22 +33,23 @@
     state: latest
   when: ansible_os_family == "RedHat"
 
-- name: Running AKMods
-  ansible.builtin.command: akmods
-  become: true
-  when: ansible_os_family == "RedHat"
+- name: Checking First Run
+  tags: always
+  stat:
+    path: /home/{{ invoking_user }}/.firstRun
+  register: result
 
-#- name: Adding VirtualBox Module
-#  community.general.modprobe:
+  - name: Reboot if this is the first time running the playbook
+    tags: always
+    import_role:
+      name: reboot_device
+    when: not result.stat.exists
+
+#- name: Restart Service (Fedora Based)
+#  ansible.builtin.service:
 #    name: vboxdrv
-#    state: present
+#    state: restarted
 #  when: ansible_os_family == "RedHat"
-
-- name: Restart Service (Fedora Based)
-  ansible.builtin.service:
-    name: vboxdrv
-    state: restarted
-  when: ansible_os_family == "RedHat"
 
 - name: Capturing VirtualBox Edition
   ansible.builtin.shell: vboxmanage --version

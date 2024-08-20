@@ -4,9 +4,6 @@
     state: touch
     mode: '0777'
 
-#- name: Rebooting Machine
-#  ansible.builtin.reboot:
-
 - name: Rebooting
   ansible.builtin.command: reboot
   become: yes
