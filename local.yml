@@ -2,9 +2,11 @@
 - hosts: localhost
   connection: local
   become: true
-  ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
 
   pre_tasks:
+  - name: Importing Variables
+    ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
+
   - name: Creatig temp folder
     tags: always
     ansible.builtin.file:
