@@ -45,11 +45,11 @@
     name: reboot_device
   when: not result.stat.exists
 
-#- name: Restart Service (Fedora Based)
-#  ansible.builtin.service:
-#    name: vboxdrv
-#    state: restarted
-#  when: ansible_os_family == "RedHat"
+- name: Restart Service (Fedora Based)
+  ansible.builtin.service:
+    name: vboxdrv
+    state: restarted
+  when: ansible_os_family == "RedHat"
 
 - name: Capturing VirtualBox Edition
   ansible.builtin.shell: vboxmanage --version
