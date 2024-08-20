@@ -1,0 +1,19 @@
+- name: Installing Kernel Stub (Pop_OS! only)
+  ansible.builtin.apt:
+    name:
+      - build-dep
+      - kernelstub
+    state: latest
+  when: ansible_distribution == "Pop!_OS"
+
+- name: Enabling Virtualization at Boot (Pop_OS! only / AMD CPU)
+  ansible.builtin.commmand: kernelstub --add-options "amd_iommu=on"
+  when:
+    - ansible_distribution == "Pop!_OS"
+    - ansible_processor == "AuthenticAMD"
+
+- name: Enabling Virtualization at Boot (Pop_OS! only / Intel CPU)
+  ansible.builtin.commmand: kernelstub --add-options "intel_iommu=on"
+  when:
+    - ansible_distribution == "Pop!_OS"
+    - ansible_processor == "GenuineIntel"
