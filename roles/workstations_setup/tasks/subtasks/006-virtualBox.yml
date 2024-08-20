@@ -33,18 +33,18 @@
     state: latest
   when: ansible_os_family == "RedHat"
 
+#- name: Restart Service (Fedora Based)
+#  ansible.builtin.service:
+#    name: vboxdrv.service
+#    state: restarted
+#  when: ansible_os_family == "RedHat"
+
 - name: Capturing VirtualBox Edition
   ansible.builtin.shell: vboxmanage --version
   register:  VBResults
 - debug:
     msg: "{{ VBResults.stdout[:6] }}"
   ignore_errors: true
-
-- name: Restart Service (Fedora Based)
-  ansible.builtin.service:
-    name: vboxdrv.service
-    state: restarted
-  when: ansible_os_family == "RedHat"
 
 - name: Downloading VirtualBox Extension Pack
   ansible.builtin.get_url:
