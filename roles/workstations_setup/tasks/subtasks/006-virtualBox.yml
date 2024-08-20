@@ -33,11 +33,17 @@
     state: latest
   when: ansible_os_family == "RedHat"
 
-#- name: Restart Service (Fedora Based)
-#  ansible.builtin.service:
-#    name: vboxdrv.service
-#    state: restarted
-#  when: ansible_os_family == "RedHat"
+- name: Adding VirtualBox Module
+  community.general.modprobe:
+    name: vboxdrv
+    state: present
+  when: ansible_os_family == "RedHat"
+
+- name: Restart Service (Fedora Based)
+  ansible.builtin.service:
+    name: vboxdrv.service
+    state: restarted
+  when: ansible_os_family == "RedHat"
 
 - name: Capturing VirtualBox Edition
   ansible.builtin.shell: vboxmanage --version
