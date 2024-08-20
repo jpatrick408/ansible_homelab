@@ -2,6 +2,7 @@
 - hosts: localhost
   connection: local
   become: true
+  ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
 
   pre_tasks:
   - name: Creatig temp folder
