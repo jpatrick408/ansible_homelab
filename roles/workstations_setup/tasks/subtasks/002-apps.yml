@@ -2,13 +2,11 @@
   ansible.builtin.package:
     state: latest
     name:
-      - putty
       - gtkterm
       - vlc
       - wine
       - gparted
       - syncthing
-#      - neofetch
 
 - name: Installing PSUtils
   ansible.builtin.package:
@@ -16,7 +14,6 @@
     name:
       - psutils
       - python3-psutil
-  #when: ansible_os_family == "RedHat"
 
 - name: Installing Handbrake from Flathub
   community.general.flatpak:
