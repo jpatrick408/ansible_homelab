@@ -7,6 +7,7 @@
       - wine
       - gparted
       - syncthing
+      - remmina
 
 - name: Installing PSUtils
   ansible.builtin.package:
