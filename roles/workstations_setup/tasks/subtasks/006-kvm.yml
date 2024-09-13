@@ -11,14 +11,14 @@
     cmd: kernelstub --add-options "amd_iommu=on"
   when:
     - ansible_distribution == "Pop!_OS"
-    - ansible_processor[0] == "AuthenticAMD"
+    - ansible_processor == "AuthenticAMD"
 
 - name: Enabling Virtualization at Boot (Pop_OS! only / Intel CPU)
   ansible.builtin.command:
     cmd: kernelstub --add-options "intel_iommu=on"
   when:
     - ansible_distribution == "Pop!_OS"
-    - ansible_processor[0] == "AuthenticAMD"
+    - ansible_processor == "GenuineIntel"
 
 - name: Enabling Virtualization at Boot (Grub based / AMD CPU)
   ansible.builtin.lineinfile:
@@ -31,7 +31,7 @@
     mode: '0644'
   when:
     - not ansible_distribution == "Pop!_OS"
-    - ansible_processor[0] == "AuthenticAMD"
+    - ansible_processor == "AuthenticAMD"
 
 - name: Enabling Virtualization at Boot (Grub based / Intel CPU)
   ansible.builtin.lineinfile:
@@ -44,7 +44,7 @@
     mode: '0644'
   when:
     - not ansible_distribution == "Pop!_OS"
-    - ansible_processor[0] == "GenuineIntel"
+    - ansible_processor == "GenuineIntel"
 
 - name: Updating Grub (If Needed)
   ansible.builtin.command:
