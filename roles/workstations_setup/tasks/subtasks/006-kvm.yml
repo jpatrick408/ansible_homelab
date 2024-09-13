@@ -1,9 +1,9 @@
 - name: Installing Kernel Stub (Pop_OS! only)
-  ansible.builtin.apt:
+  ansible.builtin.package:
+    state: latest
     name:
       - build-dep
       - kernelstub
-    state: latest
   when: ansible_distribution == "Pop!_OS"
 
 - name: Enabling Virtualization at Boot (Pop_OS! only / AMD CPU)
@@ -17,4 +17,3 @@
   when:
     - ansible_distribution == "Pop!_OS"
     - ansible_processor == "GenuineIntel"
-
