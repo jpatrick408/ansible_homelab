@@ -47,7 +47,7 @@
     - ansible_processor[0] == "GenuineIntel"
 
 - name: Updating Grub (If Needed)
-  ansbile.builtin.command:
+  ansible.builtin.command:
     cmd: update-grub
   when:
     - not ansible_distribution == "Pop!_OS"
