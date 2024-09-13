@@ -18,6 +18,7 @@
 - name: Enabling Virtualization at Boot (Pop_OS! only / Intel CPU)
   ansible.builtin.command:
     cmd: kernelstub --add-options "intel_iommu=on"
+  when:
     - ansible_distribution == "Pop!_OS"
     - ansible_processor[0] == "AuthenticAMD"
 #  when: ansible_distribution == "Pop!_OS"
