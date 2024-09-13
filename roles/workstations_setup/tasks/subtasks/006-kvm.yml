@@ -48,7 +48,7 @@
 
 - name: Updating Grub (If Needed)
   ansible.builtin.command:
-    cmd: update-grub
+    cmd: grub-mkconfig -o /boot/grub2/grub.cfg
   when:
     - not ansible_distribution == "Pop!_OS"
 
