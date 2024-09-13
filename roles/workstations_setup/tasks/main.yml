@@ -8,7 +8,6 @@
   - ansible.builtin.import_tasks: subtasks/004-angryIpScanner.yml
   - ansible.builtin.import_tasks: subtasks/005-drawIO.yml
   - ansible.builtin.import_tasks: subtasks/006-kvm.yml
-    when: ansible_distribution == "Pop!_OS"
   - ansible.builtin.import_tasks: subtasks/007-theia.yml
   - ansible.builtin.import_tasks: subtasks/008-steam.yml
   - ansible.builtin.import_tasks: subtasks/009-libreoffice.yml
