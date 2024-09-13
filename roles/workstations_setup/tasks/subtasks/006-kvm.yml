@@ -21,7 +21,7 @@
     - ansible_processor[0] == "AuthenticAMD"
 
 - name: Enabling Virtualization at Boot (Grub based / AMD CPU)
-  ansible.builtin.linefile:
+  ansible.builtin.lineinfile:
     path: /etc/default/grub
     backup: true
     search_string: quiet"
@@ -34,7 +34,7 @@
     - ansible_processor[0] == "AuthenticAMD"
 
 - name: Enabling Virtualization at Boot (Grub based / Intel CPU)
-  ansible.builtin.linefile:
+  ansible.builtin.lineinfile:
     path: /etc/default/grub
     backup: true
     search_string: quiet"
