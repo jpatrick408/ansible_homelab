@@ -27,6 +27,7 @@
       name: "*"
       update_only: yes
       update_cache: yes
+      state: latest
     when: ansible_os_family == "RedHat"
 
 - hosts: all
