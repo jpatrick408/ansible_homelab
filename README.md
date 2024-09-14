@@ -22,6 +22,8 @@ Ansible Pull playbook for setting up new machines.
       - https://www.claudiokuenzler.com/blog/1361/how-to-retrieve-latest-version-tag-github-repository-api-ansible-playbook
     - Techno Tim Youtube tutorial.
       - https://www.youtube.com/watch?v=w9eCU4bGgjQ
+    - Jeff Geeringling's Blog:
+      - https://www.jeffgeerling.com/blog/2022/ansible-playbook-upgrade-ubuntudebian-servers-and-reboot-if-needed
     - Google
       - https://groups.google.com/g/ansible-project/c/bjiff3ORpSA?pli=1 for the following little code.
         - -e invoking_user=${USER}
