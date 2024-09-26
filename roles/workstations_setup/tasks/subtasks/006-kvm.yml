@@ -30,18 +30,29 @@
     - ansible_processor == "AuthenticAMD"
 #  when: (not ansible_distribution == "Pop!_OS") and (ansible_processor == "AuthenticAMD")
 
-- name: Enabling Virtualization at Boot (Grub based / Intel CPU)
-  ansible.builtin.lineinfile:
-    path: /etc/default/grub
-    backup: true
-    search_string: quiet"
-    line: quiet intel_iommu=on"
+- name: Enabling Virtualization at Boot (Grub based / Intel CPU - Ubuntu)
+  ansible.builtin.template:
+    src: "{{ grub_update_template_file }}"
+    dest: /etc/default/grub
     owner: root
     group: root
-    mode: '0644'
+    mode: 0622
   when:
     - ansible_distribution != "Pop!_OS"
     - ansible_processor == "GenuineIntel"
+
+#- name: Enabling Virtualization at Boot (Grub based / Intel CPU)
+#  ansible.builtin.lineinfile:
+#    path: /etc/default/grub
+#    backup: true
+#    search_string: quiet"
+#    line: quiet intel_iommu=on"
+#    owner: root
+#    group: root
+#    mode: '0644'
+#  when:
+#    - ansible_distribution != "Pop!_OS"
+#    - ansible_processor == "GenuineIntel"
 #  when: (not ansible_distribution == "Pop!_OS") and (ansible_processor == "GenuineIntel")
 
 - name: Updating Grub (If Needed)
