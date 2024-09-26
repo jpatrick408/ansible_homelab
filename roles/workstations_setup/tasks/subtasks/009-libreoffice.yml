@@ -7,4 +7,4 @@
 - name: Installing Libreoffice from Flathub
   community.general.flatpak:
     name: org.libreoffice.LibreOffice
-    state: latest
+    state: present
