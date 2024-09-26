@@ -41,7 +41,7 @@
     mode: '0644'
   when:
     - ansible_distribution != "Pop!_OS"
-    - ansible_processor == "GenuineIntel")
+    - ansible_processor == "GenuineIntel"
 #  when: (not ansible_distribution == "Pop!_OS") and (ansible_processor == "GenuineIntel")
 
 - name: Updating Grub (If Needed)
