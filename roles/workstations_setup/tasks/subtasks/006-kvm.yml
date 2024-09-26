@@ -26,7 +26,7 @@
     group: root
     mode: '0644'
   when:
-    - not ansible_distribution == "Pop!_OS"
+    - ansible_distribution != "Pop!_OS"
     - ansible_processor == "AuthenticAMD"
 #  when: (not ansible_distribution == "Pop!_OS") and (ansible_processor == "AuthenticAMD")
 
@@ -40,7 +40,7 @@
     group: root
     mode: '0644'
   when:
-    - not ansible_distribution == "Pop!_OS"
+    - ansible_distribution != "Pop!_OS"
     - ansible_processor == "GenuineIntel")
 #  when: (not ansible_distribution == "Pop!_OS") and (ansible_processor == "GenuineIntel")
 
