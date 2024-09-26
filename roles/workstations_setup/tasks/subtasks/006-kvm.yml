@@ -2,7 +2,7 @@
   ansible.builtin.package:
     state: latest
     name:
-      - build-dep
+      #- build-dep
       - kernelstub
   when: ansible_distribution == "Pop!_OS"
 
