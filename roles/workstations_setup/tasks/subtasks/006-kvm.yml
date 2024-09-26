@@ -25,7 +25,10 @@
     owner: root
     group: root
     mode: '0644'
-  when: (not ansible_distribution == "Pop!_OS") and (ansible_processor == "AuthenticAMD")
+  when:
+    - not ansible_distribution == "Pop!_OS"
+    - ansible_processor == "AuthenticAMD"
+#  when: (not ansible_distribution == "Pop!_OS") and (ansible_processor == "AuthenticAMD")
 
 - name: Enabling Virtualization at Boot (Grub based / Intel CPU)
   ansible.builtin.lineinfile:
@@ -36,7 +39,10 @@
     owner: root
     group: root
     mode: '0644'
-  when: (not ansible_distribution == "Pop!_OS") and (ansible_processor == "GenuineIntel")
+  when:
+    - not ansible_distribution == "Pop!_OS"
+    - ansible_processor == "GenuineIntel")
+#  when: (not ansible_distribution == "Pop!_OS") and (ansible_processor == "GenuineIntel")
 
 - name: Updating Grub (If Needed)
   ansible.builtin.command:
