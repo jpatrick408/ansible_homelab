@@ -7,7 +7,7 @@
 
 - name: Downloading Theia
   ansible.builtin.get_url:
-    url: https://www.eclipse.org/downloads/download.php?file=/theia/ide/latest/linux/TheiaIDE.AppImage&r=1
+    url: https://www.eclipse.org/downloads/download.php?file=/theia/ide/latest/linux/TheiaIDE.AppImage&r=0
     dest: /home/jpatr/AppImages/TheiaIDE.AppImage
     owner: jpatr
     group: jpatr
