@@ -20,8 +20,8 @@
   ansible.builtin.lineinfile:
     path: /etc/default/grub
     backup: true
-    search_string: quiet"
-    line: quiet amd_iommu=on"
+    search_string: GRUB_CMDLINE_LINUX="rhgb quiet"
+    line: GRUB_CMDLINE_LINUX="rhgb quiet amd_iommu=on"
     owner: root
     group: root
     mode: '0644'
