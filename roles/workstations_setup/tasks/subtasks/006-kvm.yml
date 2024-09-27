@@ -2,19 +2,23 @@
   ansible.builtin.package:
     state: latest
     name:
-      #- build-dep
       - kernelstub
-  when: ansible_distribution == "Pop!_OS"
+  when:
+    - ansible_distribution == "Pop!_OS"
 
 - name: Enabling Virtualization at Boot (Pop_OS! only / AMD CPU)
   ansible.builtin.command:
     cmd: kernelstub --add-options "amd_iommu=on"
-  when: (ansible_distribution == "Pop!_OS") and (ansible_processor == "AuthenticAMD")
+  when:
+    - ansible_distribution == "Pop!_OS"
+    - ansible_processor == "AuthenticAMD")
 
 - name: Enabling Virtualization at Boot (Pop_OS! only / Intel CPU)
   ansible.builtin.command:
     cmd: kernelstub --add-options "intel_iommu=on"
-  when: (ansible_distribution == "Pop!_OS") and (ansible_processor == "GenuineIntel")
+  when:
+    - ansible_distribution == "Pop!_OS"
+    - ansible_processor == "GenuineIntel")
 
 - name: Enabling Virtualization at Boot (Grub based / AMD CPU)
   ansible.builtin.lineinfile:
@@ -39,12 +43,18 @@
     group: root
     mode: '0644'
   when:
-    - ansible_distribution == "Fedora"
+    - ansible_distribution != "Pop!_OS"
     - ansible_processor == "GenuineIntel"
 
-- name: Updating Grub (If Needed)
+- name: Updating Grub (Fedora Based)
   ansible.builtin.command:
-    cmd: grub-mkconfig -o /boot/grub2/grub.cfg
+    cmd: grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg
   when:
-    - not ansible_distribution == "Pop!_OS"
+    - ansible_os_family == "RedHat"
 
+- name: Updating Grub (Fedora Debia)
+  ansible.builtin.command:
+    cmd: update-grub
+  when:
+    - ansible_os_family == "Debian"
+    - ansible_distribution != "Pop!_OS"
