@@ -27,8 +27,7 @@
     mode: '0644'
   when:
     - ansible_distribution != "Pop!_OS"
-    - ansible_processor == "AuthenticAMD"
-#  when: (not ansible_distribution == "Pop!_OS") and (ansible_processor == "AuthenticAMD")
+    - ansible_processor[1] == "AuthenticAMD"
 
 - name: Enabling Virtualization at Boot (Grub based / Intel CPU)
   ansible.builtin.lineinfile:
