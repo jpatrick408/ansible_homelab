@@ -1,0 +1,2 @@
+- blocks:
+  - ansible.builtin.import_tasks: ../../create_vm
