@@ -76,6 +76,7 @@
       - bridge-utils
       - virt-manager
       - ovmf
+      - input
     state: present
   when:
     - ansible_os_family == "Debian"
@@ -91,3 +92,15 @@
     name: {{ invoking_user }}
     groups: kvm,input,libvirt
     append: yes
+
+- name: Modifying SELinux's Qemu config (Fedora Based)
+  ansible.builtin.lineinfile:
+    path: /etc/libvirt/qmeu.conf
+    backup: true
+    search_string: #security_default_confined = 1
+    line: security_default_confined = 0
+    owner: root
+    group: root
+    mode: '0600'
+  when:
+    - ansible_os_family == "RedHat"
