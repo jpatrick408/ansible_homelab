@@ -1,8 +1,30 @@
 ---
-- hosts: localhost
-  connection: local
+- hosts: all
+  tags: servers
   become: true
 
   tasks:
-    - name: Create Virutal Machine
-      tags: virtual
+    - name: Setup speed test server
+      tags: speedtest
+      import_roles:
+        name: speedtest_server
+
+#    - name: Setup Jellyfin
+#      tags: jellyfin
+#      import_roles:
+#        name: jellyfin_server
+
+#    - name: Setup Pi-Hole
+#      tags: dns
+#      import_roles:
+#        name: pihole_server
+
+#    - name: Setup Gitea
+#      tags: git
+#      import_roles:
+#        name: git_server
+
+#    - name: Setup Unifi Controller
+#      tags: unifi
+#      import_roles:
+#        name: unifi
