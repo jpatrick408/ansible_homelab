@@ -88,7 +88,7 @@
     enabled: true
 
 - name: Adding user to groups for virtualization
-  ansible.bultin.user:
+  ansible.builtin.user:
     name: "{{ invoking_user }}"
     groups: kvm,input,libvirt
     append: yes
