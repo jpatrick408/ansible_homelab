@@ -89,7 +89,7 @@
 
 - name: Adding user to groups for virtualization
   ansible.bultin.user:
-    name: {{ invoking_user }}
+    name: "{{ invoking_user }}"
     groups: kvm,input,libvirt
     append: yes
 
