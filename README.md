@@ -2,7 +2,7 @@
 
 This is a backup of my Ansbile playbook that is stored on my local Gitea server.
 
-This is my Ansible playbook for setting up/restoring systems in my home lab.  It is a rewrite of my Ansible-Pull playbook.  You can find it on my github page.
+This is my Ansible playbook for setting up/restoring my laptops and desktop.  It is a rewrite of my Ansible-Pull playbook.  You can find it on my github page.
 
 
 Ansible Pull playbook for setting up new machines.

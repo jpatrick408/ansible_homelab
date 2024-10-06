@@ -1,6 +1,0 @@
-- ansible.builtin.include_vars: techSpecs.yml
-
-- import_role:
-    name: create_vm
-#- block:
-#  - ansible.builtin.import_tasks: ../../create_vm
