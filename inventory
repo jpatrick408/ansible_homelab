@@ -1,18 +1,18 @@
 ---
 servers:
   hosts:
-#    jsdocker:
     jsgit:
-#    jspterodactyl:
     jsspeedtest:
     jsstreaming:
-#    jsansible:
     jsunifi:
+#    jsdocker:
+#    jsansible:
+#    jspterodactyl:
 
 rpis:
   hosts:
 #    jsansible:
-    jsunifi:
+#    jsunifi:
 
 workstations:
   hosts:

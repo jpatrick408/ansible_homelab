@@ -4,27 +4,27 @@
   become: true
 
   tasks:
-    - name: Setup speed test server
-      tags: speedtest
-      import_roles:
-        name: speedtest_server
+  - name: Setup speed test server
+    tags: speedtest
+    import_role:
+      name: speedtest_server
 
 #    - name: Setup Jellyfin
 #      tags: jellyfin
-#      import_roles:
+#      import_role:
 #        name: jellyfin_server
 
 #    - name: Setup Pi-Hole
 #      tags: dns
-#      import_roles:
+#      import_role:
 #        name: pihole_server
 
 #    - name: Setup Gitea
 #      tags: git
-#      import_roles:
+#      import_role:
 #        name: git_server
 
 #    - name: Setup Unifi Controller
 #      tags: unifi
-#      import_roles:
+#      import_role:
 #        name: unifi

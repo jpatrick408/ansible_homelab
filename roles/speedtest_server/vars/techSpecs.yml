@@ -1,4 +1,4 @@
-vm_name: LibreSpeed
+vm_name: LibreSpeed-test
 vm_template: Debian Bookworm 12
 vm_storage_size: 5
 vm_sr: Local Storage
