@@ -1,5 +1,12 @@
+#Use -e xenserver_password=XXXX to assign the server pw
+
+- ansible.builtin.include_vars: vmVars.yml
+
 - name: Create a VM from a template
   community.general.xenserver_guest:
+    hostname: "{{ xenserver_hostname }}"
+    username: "{{ xenserver_username }}"
+    password: "{{ xenserver_password }}"
     name: "{{ vm_name }}"
     state: poweredon
     template: "{{ vm_template }}"
