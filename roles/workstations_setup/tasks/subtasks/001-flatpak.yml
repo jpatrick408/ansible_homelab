@@ -22,8 +22,17 @@
     state: present
   when: ansible_os_family == "RedHat"
 
-- name: Installing flatpak (Debian Based)
+- name: Installing Flatpak (Debian Based)
   ansible.builtin.apt:
-    name: flatpak
+    name:
+      - flatpak
+      - gnome-software-plugin-flatpak
     state: latest
+  when: ansible_os_family == "Debian"
+
+- name: Adding Flathub Repo (Debian Based)
+  community.general.flatpak_remote:
+    name: flathub
+    state: present
+    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
   when: ansible_os_family == "Debian"
