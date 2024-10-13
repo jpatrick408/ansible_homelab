@@ -71,7 +71,7 @@
     name:
       - qemu-kvm
       - qemu-utils
-      - libvirt-daemon-syustem
+      - libvirt-daemon-system
       - libvirt-clients
       - bridge-utils
       - virt-manager
