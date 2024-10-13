@@ -95,7 +95,7 @@
 
 - name: Modifying SELinux's Qemu config (Fedora Based)
   ansible.builtin.lineinfile:
-    path: /etc/libvirt/qmeu.conf
+    path: /etc/libvirt/qemu.conf
     backup: true
     search_string: #security_default_confined = 1
     line: security_default_confined = 0
