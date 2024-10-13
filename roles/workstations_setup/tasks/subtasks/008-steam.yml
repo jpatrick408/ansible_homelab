@@ -1,7 +1,7 @@
 - name: Enabling Multi-Arch (Debian Based)
   ansible.builtin.command: dpkg --add-architecture-i386
   when:
-    - ansible_os_familu == "Debian"
+    - ansible_os_family == "Debian"
 
 - name: Update Cache (Debian based)
   tags: always
