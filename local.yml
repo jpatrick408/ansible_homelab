@@ -14,17 +14,6 @@
       state: directory
       mode: '0777'
 
-  - name: Enabling Contrib (Based)
-    ansible.builtin.lineinfile:
-      path: /etc/apt/sources.list
-      backup: true
-      search_string: deb http://deb.debian.org/debian/ bookworm main non-free
-      line: deb http://deb.debian.org/debian/ bookworm main contrib non-free
-      owner: root
-      group: root
-      mode: '0644'
-    when: ansible_distribution == "Debian"
-
   - name: Update all packages (Debian based)
     tags: always
     ansible.builtin.apt:
