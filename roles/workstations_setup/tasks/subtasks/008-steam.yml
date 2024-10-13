@@ -1,5 +1,5 @@
 - name: Enabling Multi-Arch (Debian Based)
-  ansible.builtin.command: dpkg --add-architecture-i386
+  ansible.builtin.command: dpkg --add-architecture i386
   when:
     - ansible_os_family == "Debian"
 
