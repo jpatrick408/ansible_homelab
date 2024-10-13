@@ -18,7 +18,7 @@
     ansible.builtin.lineinfile:
       path: /etc/apt/sources.list
       backup: true
-      search_string: deb http://deb.debian.org/debian bookworm main non-free-firmware
+      search_string: deb http://deb.debian.org/debian/ bookworm main contrib non-free
       line: deb http://deb.debian.org/debian/ bookworm main contrib non-free
       owner: root
       group: root
