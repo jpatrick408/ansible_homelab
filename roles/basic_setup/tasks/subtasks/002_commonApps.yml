@@ -3,7 +3,7 @@
   ansible.builtin.package:
     state: latest
     name:
-      - colordiff
+      #- colordiff
       - tmux
       - wget
       - curl
