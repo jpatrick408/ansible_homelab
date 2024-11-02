@@ -10,6 +10,7 @@
       - remmina
       - psutils
       - python3-psutil
+      - fakeroot
 
 - name: Installing Handbrake from Flathub
   community.general.flatpak:
