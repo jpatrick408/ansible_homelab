@@ -8,11 +8,6 @@
       - gparted
       - syncthing
       - remmina
-
-- name: Installing PSUtils
-  ansible.builtin.package:
-    state: latest
-    name:
       - psutils
       - python3-psutil
 
