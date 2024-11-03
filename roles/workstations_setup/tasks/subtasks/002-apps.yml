@@ -11,6 +11,7 @@
       - psutils
       - python3-psutil
       - fakeroot
+      - gamemode
 
 - name: Installing Handbrake from Flathub
   community.general.flatpak:
