@@ -22,7 +22,7 @@
     dest: /tmp/drawIO.deb
     mode: 0777
   when: ansible_os_family == "Debian"
-  
+
 - name: Instalinng the Latest Version of DrawIO (Fedora Based Systems)
   ansible.builtin.dnf:
     name: /tmp/drawIO.rpm
@@ -33,7 +33,7 @@
   ansible.builtin.apt:
     deb: /tmp/drawIO.deb
   when: ansible_os_family == "Debian"
-  
+
 - name: Deleting the Installer (Fedora Based Systems)
   ansible.builtin.file:
     path: /tmp/drawIO.rpm
