@@ -2,13 +2,13 @@
   ansible.builtin.file:
     path: /home/jpatr/AppImages
     state: directory
-    owner: jpatr
-    group: jpatr
+    owner: "{{ invoking_user }}"
+    group: "{{ invoking_user }}"
 
 - name: Downloading Theia
   ansible.builtin.get_url:
     url: https://www.eclipse.org/downloads/download.php?file=/theia/ide/latest/linux/TheiaIDE.AppImage&r=0
     dest: /home/jpatr/AppImages/TheiaIDE.AppImage
-    owner: jpatr
-    group: jpatr
+    owner: "{{ invoking_user }}"
+    group: "{{ invoking_user }}"
     mode: "0770"

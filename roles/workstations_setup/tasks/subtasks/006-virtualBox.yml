@@ -61,22 +61,22 @@
 - name: Downloading VirtualBox Extension Pack
   ansible.builtin.get_url:
     url: https://download.virtualbox.org/virtualbox/{{ VBResults.stdout[:6] }}/Oracle_VM_VirtualBox_Extension_Pack-{{ VBResults.stdout[:6]  }}.vbox-extpack
-    dest: /home/jpatr/.tmp//Oracle_VM_VirtualBox_Extension_Pack-{{ VBResults.stdout[:6]  }}.vbox-extpack
+    dest: /home/{{ invoking_user }}/.tmp//Oracle_VM_VirtualBox_Extension_Pack-{{ VBResults.stdout[:6]  }}.vbox-extpack
     mode: '0777'
 
   #Thanks to the VBox forum for the echo trick (https://forums.virtualbox.org/viewtopic.php?p=427956#p427956)
 - name: Installing Extensions
   ansible.builtin.shell:
     cmd: echo y | VBoxManage extpack install --replace Oracle_VM_VirtualBox_Extension_Pack-{{ VBResults.stdout[:6]  }}.vbox-extpack
-    chdir: /home/jpatr/.tmp/
+    chdir: /home/{{ invoking_user }}/.tmp/
 
 - name: Cleaning Temp File
   ansible.builtin.file:
-    path: /home/jpatr/.tmp//Oracle_VM_VirtualBox_Extension_Pack-{{ VBResults.stdout[:6]  }}.vbox-extpack
+    path: /home/{{ invoking_user }}/.tmp//Oracle_VM_VirtualBox_Extension_Pack-{{ VBResults.stdout[:6]  }}.vbox-extpack
     state: absent
 
 - name: Adding user to vboxusers group.
   ansible.builtin.user:
-    name: jpatr
+    name: " {{invoking_user }}"
     groups: vboxusers
     append: yes

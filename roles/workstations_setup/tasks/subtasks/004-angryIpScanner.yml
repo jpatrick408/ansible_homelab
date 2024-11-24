@@ -25,7 +25,7 @@
     state: latest
     name: default-jre
   when: ansible_os_family == "Debian"
-  
+
 - name: Install the Latest Version of AngryIP Scanner (Fedora Based Systems)
   ansible.builtin.dnf:
     name: /home/{{ invoking_user }}/.tmp/IPScan.rpm
@@ -42,7 +42,7 @@
     path: /home/{{ invoking_user }}/.tmp/IPScan.rpm
     state: absent
   when: ansible_os_family == "RedHat"
-  
+
 - name: Delete RPM file (Debian based Systems)
   ansible.builtin.file:
     path: /home/{{ invoking_user }}/.tmp/IPScan.deb
