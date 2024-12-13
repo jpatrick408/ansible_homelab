@@ -1,8 +1,14 @@
-- name: Uninstalling default Libreoffice
+- name: Uninstalling default Libreoffice (Debian Based)
   ansible.builtin.package:
     state: absent
     name:
       - libreoffice*
+  when: ansible_os_family == "Debian"
+
+- name: Uninstalling default LibreOffice (Fedora Based)
+  ansible.builtin.dnf:
+    name: '@libreoffice'
+    state: absent
 
 - name: Installing Libreoffice from Flathub
   community.general.flatpak:
