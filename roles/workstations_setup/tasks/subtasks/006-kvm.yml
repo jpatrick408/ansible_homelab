@@ -48,7 +48,8 @@
 
 - name: Updating Grub (Fedora Based)
   ansible.builtin.command:
-    cmd: grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg
+#    cmd: grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg
+    cmd: grub2-mkconfig -o /boot/grub2/grub.cfg
   when:
     - ansible_os_family == "RedHat"
 
