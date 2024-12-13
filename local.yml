@@ -4,9 +4,8 @@
   become: true
   pre_tasks:
   - name: Importing Variables
-    ansible.builtin.include_vars:
+    ansible.builtin.include_vars: globalVars.yml
 #      - "{{ ansible_os_family }}.yml"
-      - globalVars.yml
 
   - name: Creatig temp folder
     tags: always
