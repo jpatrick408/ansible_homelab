@@ -4,9 +4,15 @@ This is a backup of my Ansbile playbook that is stored on my local Gitea server.
 
 This is my Ansible playbook for setting up/restoring my laptops and desktop.  It is a rewrite of my Ansible-Pull playbook.  You can find it on my github page.
 
-
 Ansible Pull playbook for setting up new machines.
 
+Requirements:
+    - Ansible
+    - Git
+    - python3-libdnf5
+        - For systems that use DNF
+
+Credit:
 - Most of what I have learned came from the following:
     - Ansible Official Documentation.
       - https://docs.ansible.com/
