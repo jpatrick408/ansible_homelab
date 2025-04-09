@@ -9,6 +9,7 @@
   ansible.builtin.dnf:
     name: '@libreoffice'
     state: absent
+  when: ansible_os_family == "RedHat"
 
 - name: Installing Libreoffice from Flathub
   community.general.flatpak:
