@@ -8,7 +8,7 @@
 
 - name: Download the Latest Version of AngryIP Scanner (Fedora Based Systems)
   ansible.builtin.get_url:
-    url: https://github.com/angryip/ipscan/releases/download/{{ result.json[1].name }}/ipscan-{{ result.json[1].name }}.x86_64.rpm
+    url: https://github.com/angryip/ipscan/releases/download/{{ result.json[0].name }}/ipscan-{{ result.json[0].name }}-1.x86_64.rpm
     dest: /home/{{ invoking_user }}/.tmp/IPScan.rpm
     mode: 0777
   when: ansible_os_family == "RedHat"
