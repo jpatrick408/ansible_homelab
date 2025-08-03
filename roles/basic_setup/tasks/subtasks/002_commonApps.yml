@@ -19,10 +19,9 @@
   tags: always
   ansible.builtin.dnf:
     name:
+      - '@development-tools'
       - automake
       - gcc
       - gcc-c++
       - kernel-devel
-#      - '@Development tools'
-#      - '@Development Libraries'
   when: ansible_os_family == "RedHat"
