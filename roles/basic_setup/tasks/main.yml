@@ -35,6 +35,22 @@
     state: mounted
   when: ansible_hostname == 'jsproart'
 
+- name: Update all packages (Debian based)
+  tags: always
+  ansible.builtin.apt:
+    upgrade: dist
+    update_cache: yes
+  when: ansible_os_family == "Debian"
+
+- name: Update all packages (Fedora based)
+  tags: always
+  ansible.builtin.dnf:
+    name: "*"
+    update_only: yes
+    update_cache: yes
+    state: latest
+  when: ansible_os_family == "RedHat"
+
 - block:
   - ansible.builtin.import_tasks: subtasks/001_microcode.yml
   - ansible.builtin.import_tasks: subtasks/002_commonApps.yml
