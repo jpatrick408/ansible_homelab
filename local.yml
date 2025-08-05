@@ -31,3 +31,10 @@
       import_role:
         name: workstations_setup
       when: inventory_hostname in groups["workstations"]
+
+- hosts: jsproart
+  become: true
+  tasks:
+    - name: JSProArt Laptop Setup
+      import_role:
+        name: proart_setup
