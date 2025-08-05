@@ -1,0 +1,9 @@
+- name: Installing Gnome Extensions
+  community.general.flatpak:
+    name:
+      - org.gnome.Extensions
+      - io.github.ungoogled_software.ungoogled_chromium
+      - com.jgraph.drawio.desktop
+      - com.heroicgameslauncher.hgl
+      - net.davidotek.pupgui2
+    state: present
