@@ -51,6 +51,14 @@
     state: latest
   when: ansible_os_family == "RedHat"
 
+- name: Copying Bash File
+  ansible.builtin.copy:
+  src: ../files/bashrc
+  dest: /home/{{ invoking_user }}/.bashrc
+  mode: "0660"
+  owner: "{{ invoking_user }}"
+  group: "{{ invoking_user }}"
+
 - block:
   - ansible.builtin.import_tasks: subtasks/001_microcode.yml
   - ansible.builtin.import_tasks: subtasks/002_commonApps.yml
