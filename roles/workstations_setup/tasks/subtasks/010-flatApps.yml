@@ -1,4 +1,4 @@
-- name: Installing Gnome Extensions
+- name: Installing Flatpack Apps
   community.general.flatpak:
     name:
       - org.gnome.Extensions
@@ -6,4 +6,6 @@
       - com.jgraph.drawio.desktop
       - com.heroicgameslauncher.hgl
       - net.davidotek.pupgui2
+      - fr.handbrake.ghb
+      - org.onlyoffice.desktopeditors
     state: present

@@ -2,18 +2,18 @@
   ansible.builtin.package:
     state: latest
     name:
-#      - gtkterm
-      - vlc
-      - wine
-      - winetricks
-      - gparted
-      - syncthing
-      - remmina
-      - psutils
-      - python3-psutil
       - fakeroot
       - gamemode
       - gnome-tweaks
+      - gparted
+      - gparted
+      - psutils
+      - python3-psutil
+      - remmina
+      - syncthing
+      - vlc
+      - wine
+      - winetricks
 
 - name: Installing Handbrake from Flathub
   community.general.flatpak:
