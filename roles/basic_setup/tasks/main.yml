@@ -11,35 +11,35 @@
     mode: '0644'
   when: ansible_distribution == "Debian"
 
-- name: Importing (free) key
-  ansible.builtin.rpm_key:
-    state: present
-    key: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-free-fedora-2020
-  when: ansible_distribution == "RedHat"
+#- name: Importing (free) key
+#  ansible.builtin.rpm_key:
+#    key: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-free-fedora-2020
+#    state: present
+#  when: ansible_distribution == "RedHat"
 
-- name: Importing (non-free) key
-  ansible.builtin.rpm_key:
-    state: present
-    key: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-nonfree-fedora-2020
-  when: ansible_distribution == "RedHat"
+#- name: Importing (non-free) key
+#  ansible.builtin.rpm_key:
+#    key: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-nonfree-fedora-2020
+#    state: present
+#  when: ansible_distribution == "RedHat"
 
-- name: Enabling RPM Fusion (Fedora Based)
-  ansible.builtin.dnf:
-    name: 'https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm'
-    state: present
-  when: ansible_distribution == "RedHat"
+#- name: Enabling RPM Fusion (Fedora Based)
+#  ansible.builtin.dnf:
+#    name: 'https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm'
+#    state: present
+#  when: ansible_distribution == "RedHat"
 
-- name:  Enabling RPM Fusion - Non-Free (Fedora Based)
-  ansible.builtin.dnf:
-    name: 'https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm'
-    state: present
-  when: ansible_distribution == "RedHat"
+#- name:  Enabling RPM Fusion - Non-Free (Fedora Based)
+#  ansible.builtin.dnf:
+#    name: 'https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm'
+#    state: present
+#  when: ansible_distribution == "RedHat"
 
-- name: Enable Fedora Cisco Openh264
-  community.general.dnf_config_manager:
-    name: fedora-cisco-openh264
-    state: enabled
-  when: ansible_distribution == "RedHat"
+#- name: Enable Fedora Cisco Openh264
+#  community.general.dnf_config_manager:
+#    name: fedora-cisco-openh264
+#    state: enabled
+#  when: ansible_distribution == "RedHat"
 
 - name: Installing RPM Fusion AppStream Metadata
   ansible.builtin.dnf:
@@ -57,13 +57,8 @@
 - name: Update all packages (Fedora based)
   tags: always
   ansible.builtin.dnf:
-    update_cache: yes
-  when: ansible_os_family == "RedHat"
-
-- name: Update all packages (Fedora based)
-  tags: always
-  ansible.builtin.dnf:
     name: "*"
+    update_cache: yes
     update_only: yes
     state: latest
   when: ansible_os_family == "RedHat"
