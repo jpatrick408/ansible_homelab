@@ -24,4 +24,15 @@
       - gcc
       - gcc-c++
       - kernel-devel
+    state: latest
+  when: ansible_os_family == "RedHat"
+
+- name: Install Media Plugins (Fedora)
+  ansible.builtin.dnf:
+    name:
+      - '@Multimedia'
+      - ffmpeg-free
+      - ffmpeg
+    allowerasing: true
+    state: latest
   when: ansible_os_family == "RedHat"
