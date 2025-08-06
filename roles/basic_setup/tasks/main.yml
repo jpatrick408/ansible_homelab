@@ -47,6 +47,35 @@
     state: present
   when: ansible_distribution == "RedHat"
 
+- name: Update all packages (Debian based)
+  tags: always
+  ansible.builtin.apt:
+    upgrade: dist
+    update_cache: yes
+  when: ansible_os_family == "Debian"
+
+- name: Update all packages (Fedora based)
+  tags: always
+  ansible.builtin.dnf:
+    update_cache: yes
+  when: ansible_os_family == "RedHat"
+
+- name: Update all packages (Fedora based)
+  tags: always
+  ansible.builtin.dnf:
+    name: "*"
+    update_only: yes
+    state: latest
+  when: ansible_os_family == "RedHat"
+
+- name: Copying Bash File
+  ansible.builtin.copy:
+    src: ../files/bashrc
+    dest: /home/{{ invoking_user }}/.bashrc
+    mode: "0660"
+    owner: "{{ invoking_user }}"
+    group: "{{ invoking_user }}"
+
 - name: Creating Mount Folder (jsproart)
   ansible.builtin.file:
     path: /mnt/NVME2
@@ -64,30 +93,6 @@
 #    fstype: btrfs
 #    state: mounted
 #  when: ansible_hostname == 'jsproart'
-
-- name: Update all packages (Debian based)
-  tags: always
-  ansible.builtin.apt:
-    upgrade: dist
-    update_cache: yes
-  when: ansible_os_family == "Debian"
-
-- name: Update all packages (Fedora based)
-  tags: always
-  ansible.builtin.dnf:
-    name: "*"
-    update_only: yes
-    update_cache: yes
-    state: latest
-  when: ansible_os_family == "RedHat"
-
-- name: Copying Bash File
-  ansible.builtin.copy:
-    src: ../files/bashrc
-    dest: /home/{{ invoking_user }}/.bashrc
-    mode: "0660"
-    owner: "{{ invoking_user }}"
-    group: "{{ invoking_user }}"
 
 - block:
   - ansible.builtin.import_tasks: subtasks/001_microcode.yml
