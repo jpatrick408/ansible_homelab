@@ -13,7 +13,13 @@
 
 - name: Enabling RPM Fusion (Fedora Based)
   ansible.builtin.dnf:
-    name: 'https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm'
+    name: 'https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm' 
+    state: present
+  when: ansible_distribution == "RedHat"
+
+- name:  Enabling RPM Fusion - Non-Free (Fedora Based)
+  ansible.builtin.dnf:
+    name: 'https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm'
     state: present
   when: ansible_distribution == "RedHat"
 
@@ -51,13 +57,13 @@
     state: latest
   when: ansible_os_family == "RedHat"
 
-- name: Copying Bash File
-  ansible.builtin.copy:
-    src: ../files/bashrc
-    dest: /home/{{ invoking_user }}/.bashrc
-    mode: "0660"
-    owner: "{{ invoking_user }}"
-    group: "{{ invoking_user }}"
+#- name: Copying Bash File
+#  ansible.builtin.copy:
+#    src: ../files/bashrc
+#    dest: /home/{{ invoking_user }}/.bashrc
+#    mode: "0660"
+#    owner: "{{ invoking_user }}"
+#    group: "{{ invoking_user }}"
 
 - block:
   - ansible.builtin.import_tasks: subtasks/001_microcode.yml
