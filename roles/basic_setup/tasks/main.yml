@@ -11,6 +11,18 @@
     mode: '0644'
   when: ansible_distribution == "Debian"
 
+- name: Importing (free) key
+  ansible.builtin.rpm_key:
+    state: present
+    key: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-free-fedora-2020
+  when: ansible_distribution == "RedHat"
+
+- name: Importing (non-free) key
+  ansible.builtin.rpm_key:
+    state: present
+    key: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-nonfree-fedora-2020
+  when: ansible_distribution == "RedHat"
+
 - name: Enabling RPM Fusion (Fedora Based)
   ansible.builtin.dnf:
     name: 'https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm' 
