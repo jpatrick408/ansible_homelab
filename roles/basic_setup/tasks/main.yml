@@ -41,6 +41,12 @@
     state: enabled
   when: ansible_distribution == "RedHat"
 
+- name: Installing RPM Fusion AppStream Metadata
+  ansible.builtin.dnf:
+    name: pmfusion-\*-appstream-data
+    state: present
+  when: ansible_distribution == "RedHat"
+
 - name: Creating Mount Folder (jsproart)
   ansible.builtin.file:
     path: /mnt/NVME2
