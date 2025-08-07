@@ -18,26 +18,31 @@
     update_cache: yes
   when: ansible_os_family == "Debian"
 
-- name: Setting up RPM Fusion
-  ansible.builtin.command:
-    argv:
-      - /usr/bin/dnf
-      - install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+- name: Setting up RPM Fusion Free
+  ansible.builtin.dnf:
+    name: https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ansible_distribution_major_version}}.noarch.rpm
+    state: present
   when: ansible_os_family == "RedHat"
 
-- name: Setting up RPM Fusion
-  ansible.builtin.command:
-    argv:
-      - /usr/bin/dnf
-      - config-manager setopt fedora-cisco-openh264.enabled=1
+- name: Setting up RPM Fusion Non-Free
+  ansible.builtin.dnf:
+    name: https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ansible_distribution_major_version}}.noarch.rpm
+    state: present
   when: ansible_os_family == "RedHat"
 
-- name: Setting up RPM Fusion
-  ansible.builtin.command:
-    argv:
-      - /usr/bin/dnf
-      - install rpmfusion-\*-appstream-data
-  when: ansible_os_family == "RedHat"
+#- name: Setting up RPM Fusion
+#  ansible.builtin.command:
+#    argv:
+#      - /usr/bin/dnf
+#      - config-manager setopt fedora-cisco-openh264.enabled=1
+#  when: ansible_os_family == "RedHat"
+
+#- name: Setting up RPM Fusion
+#  ansible.builtin.command:
+#    argv:
+#      - /usr/bin/dnf
+#      - install rpmfusion-\*-appstream-data
+#  when: ansible_os_family == "RedHat"
 
 - name: Update all packages (Fedora based)
   tags: always
