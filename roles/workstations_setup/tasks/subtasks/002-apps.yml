@@ -12,7 +12,7 @@
       - remmina
       - syncthing
       - vlc
-#      - python-vlc
+      - python3-vlc
       - wine
       - winetricks
 
