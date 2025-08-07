@@ -11,18 +11,20 @@
     mode: '0644'
   when: ansible_distribution == "Debian"
 
-- name: Installing RPM Fusion AppStream Metadata
-  ansible.builtin.dnf:
-    name: pmfusion-\*-appstream-data
-    state: present
-  when: ansible_distribution == "RedHat"
-
 - name: Update all packages (Debian based)
   tags: always
   ansible.builtin.apt:
     upgrade: dist
     update_cache: yes
   when: ansible_os_family == "Debian"
+
+- name: Setting up RPM Fusion
+  ansible.builtin.command:
+    cmd:
+      - dnf -y install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+      - dnf -y config-manager setopt fedora-cisco-openh264.enabled=1
+      - dnf -y install rpmfusion-\*-appstream-data
+  when: ansible_os_family == "RedHat"
 
 - name: Update all packages (Fedora based)
   tags: always
