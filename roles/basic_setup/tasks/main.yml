@@ -23,8 +23,7 @@
     argv:
       - /usr/bin/dnf
       - install
-      - -y
-      - https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+      - -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
   when: ansible_os_family == "RedHat"
 
 - name: Setting up RPM Fusion
@@ -39,8 +38,7 @@
     argv:
       - /usr/bin/dnf
       - install
-      - -y
-      - rpmfusion-\*-appstream-data
+      - -y rpmfusion-\*-appstream-data
   when: ansible_os_family == "RedHat"
 
 - name: Update all packages (Fedora based)
