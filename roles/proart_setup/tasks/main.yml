@@ -1,0 +1,30 @@
+- name: Installing NVidia Drivers and Hardware Codecs
+  ansible.builtin.dnf:
+    name:
+      - kernel-devel
+      - mesa-va-drivers
+      - mesa-va-drivers-freeworld
+      - akmod-nvidia xorg-x11-drv-nvidia-cuda
+      - nvtop
+      - radeontop
+  when: ansible_os_family == "RedHat"
+
+- name: Enabling NVidia Hibernate Service
+  ansible.builtin.systemd_service:
+    name: nvidia-hibernate.service
+    enabled: true
+
+- name: Enabling NVidia Suspend Service
+  ansible.builtin.systemd_service:
+    name: nvidia-suspend.service
+    enabled: true
+
+- name: Enabling NVidia Resume Service
+  ansible.builtin.systemd_service:
+    name: nvidia-resume.service
+    enabled: true
+
+- name: Enabling NVidia Power Service
+  ansible.builtin.systemd_service:
+    name: nvidia-powerd.service
+    enabled: true
