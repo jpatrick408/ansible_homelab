@@ -32,7 +32,7 @@
     name:
       - '@Multimedia'
       - ffmpeg-free
-#      - ffmpeg
+      - ffmpeg
     allowerasing: true
     state: latest
   when: ansible_os_family == "RedHat"
