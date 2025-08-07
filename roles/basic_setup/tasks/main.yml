@@ -42,20 +42,6 @@
     state: present
   when: ansible_os_family == "RedHat"
 
-#- name: Setting up RPM Fusion
-#  ansible.builtin.command:
-#    argv:
-#      - /usr/bin/dnf
-#      - config-manager setopt fedora-cisco-openh264.enabled=1
-#  when: ansible_os_family == "RedHat"
-
-#- name: Setting up RPM Fusion
-#  ansible.builtin.command:
-#    argv:
-#      - /usr/bin/dnf
-#      - install rpmfusion-\*-appstream-data
-#  when: ansible_os_family == "RedHat"
-
 - name: Update all packages (Fedora based)
   tags: always
   ansible.builtin.dnf:
