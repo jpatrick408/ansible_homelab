@@ -17,13 +17,6 @@
 - hosts: all
   become: true
   tags: always
-  gather_facts: no
-  roles:
-    - role: robertdebock.rpmfusion
-
-- hosts: all
-  become: true
-  tags: always
   tasks:
     - name: Basic Setup
       tags: always
