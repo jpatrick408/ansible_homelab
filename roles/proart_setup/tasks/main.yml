@@ -55,14 +55,14 @@
       - asusctl-rog-gui
   when: ansible_os_family == "RedHat"
 
-= name: Enabling ASUS Service
- ansible.builtin.systemd_service:
+- name: Enabling ASUS Service
+  ansible.builtin.systemd_service:
     name: asusd
     enabled: true
-when: ansible_os_family == "RedHat"
+  when: ansible_os_family == "RedHat"
 
 - name: Enabling Supergfxctl Service
- ansible.builtin.systemd_service:
+  ansible.builtin.systemd_service:
     name: supergfxd
     enabled: true
-when: ansible_os_family == "RedHat"
+  when: ansible_os_family == "RedHat"
