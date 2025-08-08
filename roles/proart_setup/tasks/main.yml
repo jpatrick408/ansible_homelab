@@ -13,30 +13,30 @@
   ansible.builtin.systemd_service:
     name: nvidia-hibernate.service
     enabled: true
-when: ansible_os_family == "RedHat"
+  when: ansible_os_family == "RedHat"
 
 - name: Enabling NVidia Suspend Service
   ansible.builtin.systemd_service:
     name: nvidia-suspend.service
     enabled: true
-when: ansible_os_family == "RedHat"
+  when: ansible_os_family == "RedHat"
 
 - name: Enabling NVidia Resume Service
   ansible.builtin.systemd_service:
     name: nvidia-resume.service
     enabled: true
-when: ansible_os_family == "RedHat"
+  when: ansible_os_family == "RedHat"
 
 - name: Enabling NVidia Power Service
   ansible.builtin.systemd_service:
     name: nvidia-powerd.service
     enabled: true
-when: ansible_os_family == "RedHat"
+  when: ansible_os_family == "RedHat"
 
 - name: Enabling ASUS-Linux Repo
   ansible.builtin.command:
     cmd: dnf copr enable lukenukem/asus-linux
-when: ansible_os_family == "RedHat"
+  when: ansible_os_family == "RedHat"
 
 - name: Update all packages (Fedora based)
   tags: always
