@@ -66,3 +66,20 @@
     name: supergfxd
     enabled: true
   when: ansible_os_family == "RedHat"
+
+- name: Creating Mount Folder (jsproart)
+  ansible.builtin.file:
+    path: /mnt/NVME2
+    state: directory
+    owner: jpatr
+    group: jpatr
+    state: directory
+
+- name: Mounting Second Drive (jsproart)
+  ansible.posix.mount:
+    src: /dev/nvme0n1p1
+    path: /mnt/NVME2
+    opts: 'defaults,x-gvfs-show 0 0'
+    fstype: btrfs
+    state: mounted
+

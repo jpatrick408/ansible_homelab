@@ -59,24 +59,6 @@
     owner: "{{ invoking_user }}"
     group: "{{ invoking_user }}"
 
-- name: Creating Mount Folder (jsproart)
-  ansible.builtin.file:
-    path: /mnt/NVME2
-    state: directory
-    owner: jpatr
-    group: jpatr
-    state: directory
-  when: ansible_hostname == 'jsproart'
-
-#- name: Mounting Second Drive (jsproart)
-#  ansible.posix.mount:
-#    src: /dev/nvme0n1p1
-#    path: /mnt/NVME2
-#    opts: 'defaults,x-gvfs-show 0 0'
-#    fstype: btrfs
-#    state: mounted
-#  when: ansible_hostname == 'jsproart'
-
 - block:
   - ansible.builtin.import_tasks: subtasks/001_microcode.yml
   - ansible.builtin.import_tasks: subtasks/002_commonApps.yml
