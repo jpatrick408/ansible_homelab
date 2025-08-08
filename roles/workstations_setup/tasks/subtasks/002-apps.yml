@@ -2,6 +2,7 @@
   ansible.builtin.package:
     state: latest
     name:
+      - btop
       - fakeroot
       - gamemode
       - gnome-tweaks
