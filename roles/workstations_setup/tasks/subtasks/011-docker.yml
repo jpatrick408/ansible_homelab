@@ -1,0 +1,26 @@
+- name: Adding Docker Repository (Fedora based)
+  ansible.builtin.get_url:
+    url: https://download.docker.com/linux/fedora/docker-ce.repo
+    dest: /etc/yum.repos.d/docker-ce.repo
+  when: ansible_os_family == "RedHat"
+
+- name: Installing Docker (Fedora based)
+  ansible.builtin.dnf:
+    name:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+      - docker-buildx-plugin
+      - docker-compose-plugin
+    update_cache: yes
+  when: ansible_os_family == "RedHat"
+
+- name: Enabling Docker Containerd Service
+  ansible.builtin.systemd_service:
+    name: containerd
+    enabled: true
+
+- name: Enabling Docker Service
+  ansible.builtin.systemd_service:
+    name: docker
+    enabled: true
