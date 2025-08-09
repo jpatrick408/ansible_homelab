@@ -26,3 +26,4 @@ unset rc
 
 # Aliases
 alias update-it="sudo dnf -y upgrade && sudo flatpak -y update && flatpak -y update"
+alias vedit="EDITOR=nano ansible-vault edit"
