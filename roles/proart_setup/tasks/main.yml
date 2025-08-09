@@ -84,5 +84,5 @@
     path: /mnt/NVME2
     opts: 'defaults,x-gvfs-show 0 0'
     fstype: btrfs
+    boot: true
     state: present
-
