@@ -24,3 +24,9 @@
   ansible.builtin.systemd_service:
     name: docker
     enabled: true
+
+- name: Adding User to Docker Group
+  ansible.builtin.user:
+    name: "{{ invoking_user }}"
+    groups: docker
+    append: yes
