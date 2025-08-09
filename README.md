@@ -5,8 +5,8 @@ This is my Ansible playbook for setting up/restoring my laptops and desktop.  It
 - Requirements:
     - Ansible
     - Git
-    ~~- python3-libdnf5~~.
-        ~~- For systems that use DNF~~.
+    - ~~python3-libdnf5~~.
+       - ~~For systems that use DNF~~.
        - This now installed by default in Fedora Systems.
 
 - Credit:
