@@ -5,8 +5,10 @@
       - mesa-va-drivers
       - mesa-va-drivers-freeworld
       - akmod-nvidia xorg-x11-drv-nvidia-cuda
+      - xorg-x11-drv-nvidia-cuda-libs
       - nvtop
       - radeontop
+      - vulkan
   when: ansible_os_family == "RedHat"
 
 - name: Enabling NVidia Hibernate Service
