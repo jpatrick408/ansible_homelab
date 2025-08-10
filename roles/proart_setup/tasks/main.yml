@@ -81,7 +81,7 @@
 
 - name: Mounting Second Drive (jsproart)
   ansible.posix.mount:
-    src: /dev/nvme0n1p1
+    src: /dev/nvme1n1p1
     path: /mnt/NVME2
     opts: 'defaults,x-gvfs-show 0 0'
     fstype: btrfs
