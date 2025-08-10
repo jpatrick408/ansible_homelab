@@ -72,10 +72,13 @@
     name:
       - qemu-kvm
       - qemu-utils
+      - libvirt
       - libvirt-daemon-system
       - libvirt-clients
       - bridge-utils
+      - virt-isntall
       - virt-manager
+      - guestfs-tools
       - ovmf
 #      - input
     state: present
