@@ -28,10 +28,10 @@
 - name: Adding Docker Source (Debian Based)
   ansible.builtin.lineinfile:
     path: /etc/apt/sources.list.d/docker.list
-    line: 'deb [arch=amd64 signed-by/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu noble stable'
+    line: 'deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu noble stable'
   when: ansible_os_family == "Debian"
 
-- name: Installing Docker (Fedora based)
+- name: Installing Docker
   ansible.builtin.package:
     name:
       - docker-ce
