@@ -19,7 +19,7 @@
   when: ansible_os_family == "Debian"
 
 - name: Creating Docker Source File (Debian Based)
-  ansbible.builtin.file:
+  ansible.builtin.file:
     path: /etc/apt/sources.list.d/docker.list
     state: touch
   when: ansible_os_family == "Debian"
