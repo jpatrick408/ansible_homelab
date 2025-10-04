@@ -76,7 +76,7 @@
       - libvirt-daemon-system
       - libvirt-clients
       - bridge-utils
-      - virt-isntall
+      - virt-install
       - virt-manager
       - guestfs-tools
       - ovmf
