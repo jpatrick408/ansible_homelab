@@ -16,7 +16,7 @@
       - python3-vlc
       - wine
       - winetricks
-      - keeperpasswordmanager
+      #- keeperpasswordmanager
 
 - name: Installing Handbrake from Flathub
   community.general.flatpak:
