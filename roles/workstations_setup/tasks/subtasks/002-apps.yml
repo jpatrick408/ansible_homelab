@@ -18,15 +18,15 @@
       - winetricks
       #- keeperpasswordmanager
 
-#- name: Installing Handbrake from Flathub
-#  community.general.flatpak:
-#    name: fr.handbrake.ghb
-#    state: present
-#    remote: flathub
-#  when: ansible_os_family == "RedHat"
+- name: Installing Handbrake from Flathub
+  community.general.flatpak:
+    name: fr.handbrake.ghb
+    state: present
+    remote: flathub
+  when: ansible_os_family == "RedHat"
 
-#- name: Installing Jellyfin client
-#  community.general.flatpak:
-#    name: com.github.iwalton3.jellyfin-media-player
-#    remote: flathub
-#    state: present
+- name: Installing Jellyfin client
+  community.general.flatpak:
+    name: com.github.iwalton3.jellyfin-media-player
+    remote: flathub
+    state: present
