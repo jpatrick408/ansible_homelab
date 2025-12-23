@@ -6,6 +6,6 @@
       - com.jgraph.drawio.desktop
       - com.heroicgameslauncher.hgl
       - net.davidotek.pupgui2
-#      - fr.handbrake.ghb
+      - fr.handbrake.ghb
       - org.onlyoffice.desktopeditors
     state: present
