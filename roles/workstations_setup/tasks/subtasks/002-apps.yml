@@ -17,8 +17,7 @@
       - wine
       - winetricks
       #- keeperpasswordmanager
-      - tailscale
-      - trayscale # For testing.  If it's not good, remove.
+      - asunder
 
 - name: Installing Handbrake from Flathub
   community.general.flatpak:
