@@ -4,13 +4,12 @@
     name:
       - btop
       - fakeroot
-      - gamemode
+#      - gamemode
       - gnome-tweaks
-      - gparted
       - gparted
       - psutils
       - python3-psutil
-      - remmina
+#      - remmina
       - syncthing
       - vlc
       - python3-vlc
