@@ -36,10 +36,10 @@
     enabled: true
   when: ansible_os_family == "RedHat"
 
-- name: Enabling ASUS-Linux Repo
-  ansible.builtin.command:
-    cmd: dnf copr -y enable lukenukem/asus-linux
-  when: ansible_os_family == "RedHat"
+#- name: Enabling ASUS-Linux Repo
+#  ansible.builtin.command:
+#    cmd: dnf copr -y enable lukenukem/asus-linux
+#  when: ansible_os_family == "RedHat"
 
 - name: Update all packages (Fedora based)
   tags: always
@@ -50,25 +50,25 @@
     state: latest
   when: ansible_os_family == "RedHat"
 
-- name: Install asusctl and supergfxctl
-  ansible.builtin.dnf:
-    name:
-      - asusctl
-      - supergfxctl
-      - asusctl-rog-gui
-  when: ansible_os_family == "RedHat"
+#- name: Install asusctl and supergfxctl
+#  ansible.builtin.dnf:
+#    name:
+#      - asusctl
+#      - supergfxctl
+#      - asusctl-rog-gui
+#  when: ansible_os_family == "RedHat"
 
-- name: Enabling ASUS Service
-  ansible.builtin.systemd_service:
-    name: asusd
-    enabled: true
-  when: ansible_os_family == "RedHat"
+#- name: Enabling ASUS Service
+#  ansible.builtin.systemd_service:
+#    name: asusd
+#    enabled: true
+#  when: ansible_os_family == "RedHat"
 
-- name: Enabling Supergfxctl Service
-  ansible.builtin.systemd_service:
-    name: supergfxd
-    enabled: true
-  when: ansible_os_family == "RedHat"
+#- name: Enabling Supergfxctl Service
+#  ansible.builtin.systemd_service:
+#    name: supergfxd
+#    enabled: true
+#  when: ansible_os_family == "RedHat"
 
 - name: Creating Mount Folder (jsproart)
   ansible.builtin.file:
@@ -81,8 +81,8 @@
 
 - name: Mounting Second Drive (jsproart)
   ansible.posix.mount:
-    src: /dev/nvme1n1p1
-    path: /mnt/NVME2
+    src: /dev/nvme1n1p5
+    path: /mnt/NVME
     opts: 'defaults,x-gvfs-show 0 0'
     fstype: btrfs
     boot: true
