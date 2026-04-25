@@ -1,6 +1,7 @@
 ---
 workstations:
   hosts:
+    jsmbair
     jslaptop:
     jsproart:
     jsoffice:
