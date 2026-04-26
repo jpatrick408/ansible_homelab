@@ -4,19 +4,26 @@
     name:
       - btop
       - fakeroot
-#      - gamemode
       - gnome-tweaks
       - gparted
       - psutils
       - python3-psutil
-#      - remmina
       - syncthing
       - vlc
       - python3-vlc
       - wine
       - winetricks
-      #- keeperpasswordmanager
       - asunder
+#      - keeperpasswordmanager
+#      - gamemode
+#      - remmina
+
+- name: Add the flathub flatpak repository remote to the user installation
+  community.general.flatpak_remote:
+    name: flathub
+    state: present
+    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+    method: user
 
 - name: Installing Handbrake from Flathub
   community.general.flatpak:
