@@ -1,13 +1,21 @@
 ---
-workstations:
+linuxLaptops:
   hosts:
     jslaptop:
     jsproart:
     jsoffice:
     jssurfacebook:
-    jsmbair:
     testvm:
 
-desktop:
+linuxDesktop:
   hosts:
     jsoffice:
+
+appleLaptops:
+  hosts:
+    jsmbair:
+
+workstations:
+  children:
+    linuxLaptops:
+    linuxDesktops:
