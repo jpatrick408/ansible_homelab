@@ -70,5 +70,5 @@
     name:
       - libva-nvidia-driver
   when:
-    - gpu_vendor == "nvidia"
+#    - gpu_vendor == "nvidia"
     - ansible_os_family == "RedHat"
