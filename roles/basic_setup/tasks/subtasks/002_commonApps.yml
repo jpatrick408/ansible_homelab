@@ -30,7 +30,7 @@
 - name: Install Media Plugins (Fedora)
   ansible.builtin.dnf:
     name:
-      - '@multimedia'
+#      - '@multimedia'
       - ffmpeg-free
       - ffmpeg
     allowerasing: true
