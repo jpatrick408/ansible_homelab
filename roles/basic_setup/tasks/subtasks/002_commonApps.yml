@@ -30,9 +30,45 @@
 - name: Install Media Plugins (Fedora)
   ansible.builtin.dnf:
     name:
-      - '@Multimedia'
+      - '@multimedia'
       - ffmpeg-free
       - ffmpeg
     allowerasing: true
     state: latest
   when: ansible_os_family == "RedHat"
+
+- name: Install Hardware Media Codecs (AMD CPU Fedora)
+  ansible.builtin.dnf:
+    name:
+      - mesa-va-drivers-freeworld
+    state: latest
+  when:
+    - ansible_processor == "AuthenticAMD"
+    - ansible_os_family == "RedHat"
+
+- name: Install Hardware Media Codecs (Intel CPU Fedora)
+  ansible.builtin.dnf:
+    name:
+      - intel-media-driver
+  when:
+    - ansible_processor == "GenuineIntel"
+    - ansible_os_family == "RedHat"
+
+- name: Check for NVIDIA GPU
+  ansible.builtin.shell: lspci | grep -i nvidia
+  register: nvidia_check
+  ignore_errors: true
+  changed_when: false
+
+- name: Run task only if NVIDIA GPU is present
+  ansible.builtin.debug:
+    msg: "NVIDIA GPU detected, proceeding with installation..."
+  when: nvidia_check.rc == 0
+
+- name: Install Hardware Media Codecs (NVIDA GPU Fedora)
+  ansible.builtin.dnf:
+    name:
+      - libva-nvidia-driver
+  when:
+    - gpu_vendor == "nvidia"
+    - ansible_os_family == "RedHat"
