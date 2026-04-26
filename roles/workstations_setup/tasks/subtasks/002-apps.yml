@@ -23,7 +23,7 @@
     name: flathub
     state: present
     flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
-    method: user
+#    method: user
 
 - name: Installing Handbrake from Flathub
   community.general.flatpak:
