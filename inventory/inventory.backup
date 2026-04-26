@@ -1,0 +1,13 @@
+---
+workstations:
+  hosts:
+    jslaptop:
+    jsproart:
+    jsoffice:
+    jssurfacebook:
+    jsmbair:
+    testvm:
+
+desktop:
+  hosts:
+    jsoffice:
