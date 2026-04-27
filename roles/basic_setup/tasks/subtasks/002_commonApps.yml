@@ -30,10 +30,10 @@
   ansible.builtin.dnf:
     name:
 #      - '@multimedia'
-#      - ffmpeg-free
+      - ffmpeg-free
       - ffmpeg
     allowerasing: true
-    state: latest
+    state: present
   when: ansible_facts['os_family'] == "RedHat"
 
 - name: Install Hardware Media Codecs (AMD CPU Fedora)
