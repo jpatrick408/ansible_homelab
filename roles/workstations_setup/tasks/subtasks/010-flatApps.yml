@@ -8,4 +8,4 @@
 #      - io.github.ungoogled_software.ungoogled_chromium
 #      - com.heroicgameslauncher.hgl
 #      - net.davidotek.pupgui2
-  state: present
+    state: present
