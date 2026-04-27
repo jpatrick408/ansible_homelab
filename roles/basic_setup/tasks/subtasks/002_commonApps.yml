@@ -3,7 +3,6 @@
   ansible.builtin.package:
     state: latest
     name:
-      #- colordiff
       - tmux
       - wget
       - curl
@@ -31,7 +30,7 @@
   ansible.builtin.dnf:
     name:
 #      - '@multimedia'
-      - ffmpeg-free
+#      - ffmpeg-free
       - ffmpeg
     allowerasing: true
     state: latest
