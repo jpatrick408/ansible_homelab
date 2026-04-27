@@ -13,7 +13,7 @@
   ansible.builtin.apt:
     state: latest
     name: build-essential
-  when: ansible_os_family == "Debian"
+  when: ansible_facts['os_family'] == "Debian"
 
 - name: Install Build Essentials (Fedora Based)
   tags: always
@@ -25,7 +25,7 @@
       - gcc-c++
       - kernel-devel
     state: latest
-  when: ansible_os_family == "RedHat"
+  when: ansible_facts['os_family'] == "RedHat"
 
 - name: Install Media Plugins (Fedora)
   ansible.builtin.dnf:
@@ -35,7 +35,7 @@
       - ffmpeg
     allowerasing: true
     state: latest
-  when: ansible_os_family == "RedHat"
+  when: ansible_facts['os_family'] == "RedHat"
 
 - name: Install Hardware Media Codecs (AMD CPU Fedora)
   ansible.builtin.dnf:
@@ -44,7 +44,7 @@
     state: latest
   when:
     - ansible_processor == "AuthenticAMD"
-    - ansible_os_family == "RedHat"
+    - ansible_facts['os_family'] == "RedHat"
 
 - name: Install Hardware Media Codecs (Intel CPU Fedora)
   ansible.builtin.dnf:
@@ -52,7 +52,7 @@
       - intel-media-driver
   when:
     - ansible_processor == "GenuineIntel"
-    - ansible_os_family == "RedHat"
+    - ansible_facts['os_family'] == "RedHat"
 
 - name: Check for NVIDIA GPU
   ansible.builtin.shell: lspci | grep -i nvidia
@@ -71,4 +71,4 @@
       - libva-nvidia-driver
   when:
 #    - gpu_vendor == "nvidia"
-    - ansible_os_family == "RedHat"
+    - ansible_facts['os_family'] == "RedHat"

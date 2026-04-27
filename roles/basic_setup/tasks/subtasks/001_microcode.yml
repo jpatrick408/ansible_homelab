@@ -16,4 +16,4 @@
     state: latest
   when:
     - ansible_processor == "GenuineIntel"
-    - ansible_os_family == "Debian"
+    - ansible_facts['os_family'] == "Debian"

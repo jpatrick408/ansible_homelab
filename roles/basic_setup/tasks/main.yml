@@ -1,4 +1,4 @@
-- ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
+- ansible.builtin.include_vars: "{{ ansible_facts['os_family'] }}.yml"
 
 - name: Enabling Contrib (Based)
   ansible.builtin.lineinfile:
@@ -16,35 +16,35 @@
   ansible.builtin.apt:
     upgrade: dist
     update_cache: yes
-  when: ansible_os_family == "Debian"
+  when: ansible_facts['os_family'] == "Debian"
 
 - name: Importing RPM Fusion Free Key
   tags: always
   ansible.builtin.rpm_key:
     key: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-free-fedora-2020
     state: present
-  when: ansible_os_family == "RedHat"
+  when: ansible_facts['os_family'] == "RedHat"
 
 - name: Importing RPM Fusion Non-Free Key
   tags: always
   ansible.builtin.rpm_key:
     key: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-nonfree-fedora-2020
     state: present
-  when: ansible_os_family == "RedHat"
+  when: ansible_facts['os_family'] == "RedHat"
 
 - name: Setting up RPM Fusion Free
   tags: always
   ansible.builtin.dnf:
     name: https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ansible_distribution_major_version}}.noarch.rpm
     state: present
-  when: ansible_os_family == "RedHat"
+  when: ansible_facts['os_family'] == "RedHat"
 
 - name: Setting up RPM Fusion Non-Free
   tags: always
   ansible.builtin.dnf:
     name: https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ansible_distribution_major_version}}.noarch.rpm
     state: present
-  when: ansible_os_family == "RedHat"
+  when: ansible_facts['os_family'] == "RedHat"
 
 - name: Update all packages (Fedora based)
   tags: always
@@ -53,7 +53,7 @@
     update_cache: yes
     update_only: yes
     state: latest
-  when: ansible_os_family == "RedHat"
+  when: ansible_facts['os_family'] == "RedHat"
 
 - name: Copying Bash File
   tags: always

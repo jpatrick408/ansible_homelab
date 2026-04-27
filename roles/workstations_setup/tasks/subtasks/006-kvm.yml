@@ -51,13 +51,13 @@
 #    cmd: grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg
     cmd: grub2-mkconfig -o /boot/grub2/grub.cfg
   when:
-    - ansible_os_family == "RedHat"
+    - ansible_facts['os_family'] == "RedHat"
 
 - name: Updating Grub (Fedora Debia)
   ansible.builtin.command:
     cmd: update-grub
   when:
-    - ansible_os_family == "Debian"
+    - ansible_facts['os_family'] == "Debian"
     - ansible_distribution != "Pop!_OS"
 
 - name: Installing Virtual Packages (Fedora Based)
@@ -65,7 +65,7 @@
     name: '@virtualization'
     state: present
   when:
-    - ansible_os_family == "RedHat"
+    - ansible_facts['os_family'] == "RedHat"
 
 - name: Installing Virtual Packages (Debian Based)
   ansible.builtin.apt:
@@ -83,7 +83,7 @@
 #      - input
     state: present
   when:
-    - ansible_os_family == "Debian"
+    - ansible_facts['os_family'] == "Debian"
 
 - name: Enabling libvirtd
   ansible.builtin.systemd_service:
@@ -107,4 +107,4 @@
     group: root
     mode: '0600'
   when:
-    - ansible_os_family == "RedHat"
+    - ansible_facts['os_family'] == "RedHat"

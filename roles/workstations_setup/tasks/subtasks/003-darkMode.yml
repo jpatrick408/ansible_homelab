@@ -4,7 +4,7 @@
     state: latest
     name:
       - python3-psutil
-  when: ansible_os_family == "Debian"
+  when: ansible_facts['os_family'] == "Debian"
 
 - name: Setting Color Theme to Dark Mode
   become_user: "{{ invoking_user }}"
