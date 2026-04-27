@@ -1,4 +1,4 @@
-- ansible.builtin.include_vars: "{{ ansible_facts['os_family'] }}.yml"
+- ansible.builtin.include_vars: "{{ ansible_facts.os_family }}.yml"
 
 - name: Enabling Contrib (Based)
   ansible.builtin.lineinfile:
