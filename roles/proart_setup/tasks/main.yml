@@ -77,7 +77,6 @@
     owner: jpatr
     group: jpatr
     mode: "0770"
-    state: directory
 
 - name: Mounting Second Drive (jsproart)
   ansible.posix.mount:
