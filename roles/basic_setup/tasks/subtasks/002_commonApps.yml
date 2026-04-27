@@ -43,7 +43,7 @@
       - mesa-va-drivers-freeworld
     state: latest
   when:
-    - ansible_processor == "AuthenticAMD"
+    - ansible_facts['processor'] == "AuthenticAMD"
     - ansible_facts['os_family'] == "RedHat"
 
 - name: Install Hardware Media Codecs (Intel CPU Fedora)
@@ -51,7 +51,7 @@
     name:
       - intel-media-driver
   when:
-    - ansible_processor == "GenuineIntel"
+    - ansible_facts['processor'] == "GenuineIntel"
     - ansible_facts['os_family'] == "RedHat"
 
 - name: Check for NVIDIA GPU
@@ -70,5 +70,4 @@
     name:
       - libva-nvidia-driver
   when:
-#    - gpu_vendor == "nvidia"
     - ansible_facts['os_family'] == "RedHat"
