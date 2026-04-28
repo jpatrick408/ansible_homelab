@@ -1,5 +1,4 @@
 - ansible.builtin.include_vars: "{{ ansible_facts.os_family }}.yml"
-#- ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
 
 - block:
   - ansible.builtin.import_tasks: subtasks/001-flatpak.yml
@@ -9,6 +8,7 @@
   - ansible.builtin.import_tasks: subtasks/007-theia.yml
   - ansible.builtin.import_tasks: subtasks/010-flatApps.yml
   - ansible.builtin.import_tasks: subtasks/011-docker.yml
+  - ansible.builtin.import_tasks: subtasks/012-lmStudio.yml
   #- ansible.builtin.import_tasks: subtasks/008-steam.yml
   #- ansible.builtin.import_tasks: subtasks/005-drawIO.yml
   #- ansible.builtin.import_tasks: subtasks/004-angryIpScanner.yml

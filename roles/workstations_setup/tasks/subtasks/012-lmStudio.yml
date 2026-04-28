@@ -1,0 +1,8 @@
+- name: Downloading LM Studio App Image
+  ansible.builtin.get_url:
+    url: https://lmstudio.ai/download/latest/linux/x64?format=AppImage
+    dest: /home/jpatr/AppImages/LM-Sutio.AppImage
+    owner: "{{ invoking_user }}"
+    group: "{{ invoking_user }}"
+    mode: "0770"
+
