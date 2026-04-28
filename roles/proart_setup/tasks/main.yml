@@ -1,39 +1,11 @@
 - name: Installing NVidia Drivers and Hardware Codecs
   ansible.builtin.dnf:
     name:
-      - kernel-devel
       - mesa-va-drivers
       - mesa-va-drivers-freeworld
       - akmod-nvidia
-      - xorg-x11-drv-nvidia-cuda
-      - xorg-x11-drv-nvidia-cuda-libs
-      - nvtop
       - radeontop
       - vulkan
-  when: ansible_facts['os_family'] == "RedHat"
-
-- name: Enabling NVidia Hibernate Service
-  ansible.builtin.systemd_service:
-    name: nvidia-hibernate.service
-    enabled: true
-  when: ansible_facts['os_family'] == "RedHat"
-
-- name: Enabling NVidia Suspend Service
-  ansible.builtin.systemd_service:
-    name: nvidia-suspend.service
-    enabled: true
-  when: ansible_facts['os_family'] == "RedHat"
-
-- name: Enabling NVidia Resume Service
-  ansible.builtin.systemd_service:
-    name: nvidia-resume.service
-    enabled: true
-  when: ansible_facts['os_family'] == "RedHat"
-
-- name: Enabling NVidia Power Service
-  ansible.builtin.systemd_service:
-    name: nvidia-powerd.service
-    enabled: true
   when: ansible_facts['os_family'] == "RedHat"
 
 #- name: Enabling ASUS-Linux Repo
@@ -72,7 +44,7 @@
 
 - name: Creating Mount Folder (jsproart)
   ansible.builtin.file:
-    path: /mnt/NVME2
+    path: /mnt/Gaming
     state: directory
     owner: jpatr
     group: jpatr
@@ -81,7 +53,7 @@
 - name: Mounting Second Drive (jsproart)
   ansible.posix.mount:
     src: /dev/nvme1n1p5
-    path: /mnt/NVME
+    path: /mnt/Gaming
     opts: 'defaults,x-gvfs-show 0 0'
     fstype: btrfs
     boot: true

@@ -64,9 +64,36 @@
     msg: "NVIDIA GPU detected, proceeding with installation..."
   when: nvidia_check.rc == 0
 
-- name: Install Hardware Media Codecs (NVIDA GPU Fedora)
+- name: Install Hardware Media Drivers and Codecs (NVIDA GPU Fedora)
   ansible.builtin.dnf:
     name:
       - libva-nvidia-driver
+      - xorg-x11-drv-nvidia-cuda
+      - xorg-x11-drv-nvidia-cuda-libs
+      - nvtop
   when:
     - ansible_facts['os_family'] == "RedHat"
+
+- name: Enabling NVidia Hibernate Service
+  ansible.builtin.systemd_service:
+    name: nvidia-hibernate.service
+    enabled: true
+  when: ansible_facts['os_family'] == "RedHat"
+
+- name: Enabling NVidia Suspend Service
+  ansible.builtin.systemd_service:
+    name: nvidia-suspend.service
+    enabled: true
+  when: ansible_facts['os_family'] == "RedHat"
+
+- name: Enabling NVidia Resume Service
+  ansible.builtin.systemd_service:
+    name: nvidia-resume.service
+    enabled: true
+  when: ansible_facts['os_family'] == "RedHat"
+
+- name: Enabling NVidia Power Service
+  ansible.builtin.systemd_service:
+    name: nvidia-powerd.service
+    enabled: true
+  when: ansible_facts['os_family'] == "RedHat"
