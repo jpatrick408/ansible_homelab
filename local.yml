@@ -1,41 +1,46 @@
 ---
-- hosts: localhost
+- name: Starting Script
+  hosts: localhost
   connection: local
   become: true
   pre_tasks:
-  - name: Importing Variables
-    ansible.builtin.include_vars: globalVars.yml
-#      - "{{ ansible_os_family }}.yml"
+   - name: Importing Variables
+     ansible.builtin.include_vars: globalVars.yml
+   #  - "{{ ansible_os_family }}.yml"
 
-  - name: Creatig temp folder
-    tags: always
-    ansible.builtin.file:
+   - name: Creatig temp folder
+     tags: always
+     ansible.builtin.file:
       path: /home/{{ invoking_user }}/.tmp
       state: directory
       mode: '0777'
 
-- hosts: all
+- name: Basic Setup (Linux)
+  hosts: all
   become: true
   tags: always
   tasks:
-    - name: Basic Setup
-      tags: always
-      import_role:
-        name: basic_setup
+   - name: Basic Setup
+     tags: always
+     ansible.builtin.import_role:
+      name: basic_setup
+     when: inventory_hostname in groups["workstations"]
 
-- hosts: all
+- name: Workstation Setup (Linux)
+  hosts: all
   become: true
   tasks:
-    - name: Workstation setup
-      tags: workstations
-      import_role:
-        name: workstations_setup
-      when: inventory_hostname in groups["workstations"]
+   - name: Workstation setup
+     tags: workstations
+     ansible.builtin.import_role:
+      name: workstations_setup
+     when: inventory_hostname in groups["workstations"]
 
-- hosts: jsproart
+- name: Linux Laptop Setup
+  hosts: jsproart
   become: true
   tags: proart
   tasks:
-    - name: JSProArt Laptop Setup
-      import_role:
-        name: proart_setup
+   - name: JSProArt Laptop Setup
+     ansible.builtin.import_role:
+      name: proart_setup
