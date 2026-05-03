@@ -16,7 +16,7 @@
   tags: always
   ansible.builtin.apt:
     upgrade: dist
-    update_cache: yes
+    update_cache: true
   when: ansible_facts['os_family'] == "Debian"
 
 - name: Importing RPM Fusion Free Key
@@ -51,8 +51,8 @@
   tags: always
   ansible.builtin.dnf:
     name: "*"
-    update_cache: yes
-    update_only: yes
+    update_cache: true
+    update_only: true
     state: latest
   when: ansible_facts['os_family'] == "RedHat"
 
@@ -67,6 +67,9 @@
 
 - name: Importing Subtasks
   block:
-  - ansible.builtin.import_tasks: subtasks/001_microcode.yml
-  - ansible.builtin.import_tasks: subtasks/002_commonApps.yml
-  - ansible.builtin.import_tasks: subtasks/003_autoRemove.yml
+    - name: Importing Subtask Microcode
+      ansible.builtin.import_tasks: subtasks/001_microcode.yml
+    - name: Importing Subscript Common Apps
+      ansible.builtin.import_tasks: subtasks/002_commonApps.yml
+    - name: Importing Subscript Auto Remove
+      ansible.builtin.import_tasks: subtasks/003_autoRemove.yml

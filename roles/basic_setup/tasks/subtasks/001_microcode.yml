@@ -5,7 +5,7 @@
   tags: always
   ansible.builtin.package:
     name: "{{ amd_microcode_package }}"
-    state: latest
+    state: present
   when:
     - ansible_facts['processor'] == "AuthenticAMD"
 
@@ -13,7 +13,7 @@
   tags: always
   ansible.builtin.package:
     name: "{{ intel_microcode_package }}"
-    state: latest
+    state: present
   when:
     - ansible_facts['processor'] == "GenuineIntel"
     - ansible_facts['os_family'] == "Debian"
