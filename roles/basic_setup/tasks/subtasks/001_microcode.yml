@@ -1,7 +1,7 @@
-#I straight up stole/modified task this from Jay LaCroix at learnlinux.tv
-#https://github.com/LearnLinuxTV/personal_ansible_desktop_configs/blob/main/roles/base/tasks/system_setup/microcode.yml
+# I straight up stole/modified task this from Jay LaCroix at learnlinux.tv
+# https://github.com/LearnLinuxTV/personal_ansible_desktop_configs/blob/main/roles/base/tasks/system_setup/microcode.yml
 
-- name: system setup | microcode | install package for amd
+- name: System Setup | Microcode | Install Package for AMD
   tags: always
   ansible.builtin.package:
     name: "{{ amd_microcode_package }}"
@@ -9,7 +9,7 @@
   when:
     - ansible_facts['processor'] == "AuthenticAMD"
 
-- name: system setup | microcode | install package for intel
+- name: System Setup | Microcode | Install Package for Intel
   tags: always
   ansible.builtin.package:
     name: "{{ intel_microcode_package }}"

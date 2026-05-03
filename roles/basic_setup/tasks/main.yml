@@ -1,4 +1,5 @@
-- ansible.builtin.include_vars: "{{ ansible_facts.os_family }}.yml"
+- name: Checking OS Family
+  ansible.builtin.include_vars: "{{ ansible_facts.os_family }}.yml"
 
 - name: Enabling Contrib (Based)
   ansible.builtin.lineinfile:
@@ -64,7 +65,8 @@
     owner: "{{ invoking_user }}"
     group: "{{ invoking_user }}"
 
-- block:
+- name: Importing Subtasks
+  block:
   - ansible.builtin.import_tasks: subtasks/001_microcode.yml
   - ansible.builtin.import_tasks: subtasks/002_commonApps.yml
   - ansible.builtin.import_tasks: subtasks/003_autoRemove.yml
