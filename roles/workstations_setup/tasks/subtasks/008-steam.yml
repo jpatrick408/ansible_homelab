@@ -1,17 +1,18 @@
 - name: Enabling Multi-Arch (Debian Based)
   ansible.builtin.command: dpkg --add-architecture i386
-  when:
-    - ansible_facts['os_family'] == "Debian"
+  when: ansible_facts['os_family'] == "Debian"
+  changed_when: "'i386' not in ansible_facts['dpkg']['architectures']"
+
 
 - name: Update Cache (Debian based)
   tags: always
   ansible.builtin.apt:
-    update_cache: yes
+    update_cache: true
   when: ansible_facts['os_family'] == "Debian"
 
 - name: Installing Valve's Steam depencies (Debian Based)
   ansible.builtin.apt:
-    state: latest
+    state: present
     name: steam-libs
 #    name: steam-libs-i386
   when:
@@ -19,5 +20,5 @@
 
 - name: Install Valve's Steam
   ansible.builtin.package:
-    state: latest
+    state: present
     name: "{{ steam_package }}"

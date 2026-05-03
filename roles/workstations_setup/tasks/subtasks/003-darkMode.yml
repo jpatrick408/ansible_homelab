@@ -1,7 +1,7 @@
-#-----------------Set Gnome to Dark Mode------------------#
+# -----------------Set Gnome to Dark Mode------------------#
 - name: Installing Python PSUtilities
   ansible.builtin.package:
-    state: latest
+    state: present
     name:
       - python3-psutil
   when: ansible_facts['os_family'] == "Debian"
@@ -20,7 +20,7 @@
     value: "'prefer-dark'"
     state: present
 
-#-----------------Set Gnome Background------------------#
+# -----------------Set Gnome Background------------------#
 - name: Creating Background Folder
   ansible.builtin.file:
     path: /usr/share/backgrounds/jsquared
@@ -75,7 +75,7 @@
     value: "'000000'"
     state: present
 
-#-----------------Set Gnome Terminal Profile------------------#
+# -----------------Set Gnome Terminal Profile------------------#
 - name: Copying terminal profile locally
   ansible.builtin.copy:
     src: ../files/gnome-terminal-prfiles.dconf

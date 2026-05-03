@@ -21,7 +21,7 @@
   when: ansible_facts['os_family'] == "Debian"
 
 - name: Adding Flathub Repo (Debian Based)
-  community.general.flatpak_remote:
+  community.general.flatpak:
     name: flathub
     state: present
     flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo

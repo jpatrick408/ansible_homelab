@@ -39,7 +39,7 @@
       - containerd.io
       - docker-buildx-plugin
       - docker-compose-plugin
-    update_cache: yes
+    update_cache: true
 #  when: ansible_facts['os_family'] == "RedHat"
 
 
@@ -57,4 +57,4 @@
   ansible.builtin.user:
     name: "{{ invoking_user }}"
     groups: docker
-    append: yes
+    append: true

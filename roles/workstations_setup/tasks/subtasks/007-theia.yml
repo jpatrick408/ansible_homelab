@@ -4,6 +4,7 @@
     state: directory
     owner: "{{ invoking_user }}"
     group: "{{ invoking_user }}"
+    mode: "0770"
 
 - name: Downloading Theia
   ansible.builtin.get_url:
