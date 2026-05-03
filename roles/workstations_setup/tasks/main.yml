@@ -1,16 +1,26 @@
-- ansible.builtin.include_vars: "{{ ansible_facts.os_family }}.yml"
+- name: Importing Variables
+  ansible.builtin.include_vars: "{{ ansible_facts.os_family }}.yml"
 
-- block:
-  - ansible.builtin.import_tasks: subtasks/001-flatpak.yml
-  - ansible.builtin.import_tasks: subtasks/002-apps.yml
-  - ansible.builtin.import_tasks: subtasks/003-darkMode.yml
-  - ansible.builtin.import_tasks: subtasks/006-kvm.yml
-  - ansible.builtin.import_tasks: subtasks/007-theia.yml
-  - ansible.builtin.import_tasks: subtasks/010-flatApps.yml
-  - ansible.builtin.import_tasks: subtasks/011-docker.yml
-  - ansible.builtin.import_tasks: subtasks/012-lmStudio.yml
-  #- ansible.builtin.import_tasks: subtasks/008-steam.yml
-  #- ansible.builtin.import_tasks: subtasks/005-drawIO.yml
-  #- ansible.builtin.import_tasks: subtasks/004-angryIpScanner.yml
-  #- ansible.builtin.import_tasks: subtasks/009-libreoffice.yml
-  #- ansible.builtin.import_tasks: subtasks/012-makeMKV.yml
+- name: Importing Subtasks
+  block:
+   - name: Importing Subtask Flatpak
+     ansible.builtin.import_tasks: subtasks/001-flatpak.yml
+   - name: Importing Subtask Apps
+     ansible.builtin.import_tasks: subtasks/002-apps.yml
+   - name: Importing Subtask Dark Mode
+     ansible.builtin.import_tasks: subtasks/003-darkMode.yml
+   - name: Importing Subtask KVM
+     ansible.builtin.import_tasks: subtasks/006-kvm.yml
+   - name: Importing Subtask Theia IDE
+     ansible.builtin.import_tasks: subtasks/007-theia.yml
+   - name: Importing Subtask Flat Apps
+     ansible.builtin.import_tasks: subtasks/010-flatApps.yml
+   - name: Importing Subtask Docker
+     ansible.builtin.import_tasks: subtasks/011-docker.yml
+   - name: Importing Subtask LM Studio
+     ansible.builtin.import_tasks: subtasks/012-lmStudio.yml
+  # - ansible.builtin.import_tasks: subtasks/008-steam.yml
+  # - ansible.builtin.import_tasks: subtasks/005-drawIO.yml
+  # - ansible.builtin.import_tasks: subtasks/004-angryIpScanner.yml
+  # - ansible.builtin.import_tasks: subtasks/009-libreoffice.yml
+  # - ansible.builtin.import_tasks: subtasks/012-makeMKV.yml

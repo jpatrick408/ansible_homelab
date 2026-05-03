@@ -1,7 +1,7 @@
 - name: Install Common Apps
   tags: always
   ansible.builtin.package:
-    state: latest
+    state: present
     name:
       - tmux
       - wget
@@ -10,7 +10,7 @@
 - name: Install Build Essentials (Debian Based)
   tags: always
   ansible.builtin.apt:
-    state: latest
+    state: present
     name: build-essential
   when: ansible_facts['os_family'] == "Debian"
 
@@ -23,7 +23,7 @@
       - gcc
       - gcc-c++
       - kernel-devel
-    state: latest
+    state: present
   when: ansible_facts['os_family'] == "RedHat"
 
 - name: Install Media Plugins (Fedora)
@@ -40,7 +40,7 @@
   ansible.builtin.dnf:
     name:
       - mesa-va-drivers-freeworld
-    state: latest
+    state: present
   when:
     - ansible_facts['processor'] == "AuthenticAMD"
     - ansible_facts['os_family'] == "RedHat"

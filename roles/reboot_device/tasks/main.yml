@@ -1,9 +1,11 @@
 - name: Create First Run file.
   ansible.builtin.file:
-    path:  /home/{{ invoking_user }}/.firstRun
+    path: /home/{{ invoking_user }}/.firstRun
     state: touch
     mode: '0777'
 
 - name: Rebooting
   ansible.builtin.command: reboot
-  become: yes
+  become: true
+  when: >
+    ansible_facts.kernel_version != lookup('pipe', 'uname -r')

@@ -8,7 +8,7 @@
       - vulkan
   when: ansible_facts['os_family'] == "RedHat"
 
-#- name: Enabling ASUS-Linux Repo
+# - name: Enabling ASUS-Linux Repo
 #  ansible.builtin.command:
 #    cmd: dnf copr -y enable lukenukem/asus-linux
 #  when: ansible_facts['os_family'] == "RedHat"
@@ -17,12 +17,12 @@
   tags: always
   ansible.builtin.dnf:
     name: "*"
-    update_cache: yes
-    update_only: yes
+    update_cache: true
+    update_only: true
     state: latest
   when: ansible_facts['os_family'] == "RedHat"
 
-#- name: Install asusctl and supergfxctl
+# - name: Install asusctl and supergfxctl
 #  ansible.builtin.dnf:
 #    name:
 #      - asusctl
@@ -30,13 +30,13 @@
 #      - asusctl-rog-gui
 #  when: ansible_facts['os_family'] == "RedHat"
 
-#- name: Enabling ASUS Service
+# - name: Enabling ASUS Service
 #  ansible.builtin.systemd_service:
 #    name: asusd
 #    enabled: true
 #  when: ansible_facts['os_family'] == "RedHat"
 
-#- name: Enabling Supergfxctl Service
+# - name: Enabling Supergfxctl Service
 #  ansible.builtin.systemd_service:
 #    name: supergfxd
 #    enabled: true
