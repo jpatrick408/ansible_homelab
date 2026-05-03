@@ -4,7 +4,7 @@
 - name: System Setup | Microcode | Install Package for AMD
   tags: always
   ansible.builtin.package:
-    name: "{{ amd_microcode_package }}"
+    name: "{{ basic_setup_amd_microcode_package }}"
     state: present
   when:
     - ansible_facts['processor'] == "AuthenticAMD"

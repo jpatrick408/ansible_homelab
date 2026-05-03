@@ -1,4 +1,4 @@
-amd_microcode_package: amd64-microcode
+amd_microcode_package: basic_setup_amd64-microcode
 intel_microcode_package: intel-microcode
 lm_sensors_package: lm-sensors
 nfs_client_package: nfs-common
