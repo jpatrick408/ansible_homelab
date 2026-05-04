@@ -4,7 +4,7 @@
     return_content: true
     status_code: 200
     body_format: json
-  register: result
+  register: workstations_setup_result
 - debug:
     msg: "{{ workstations_setup_result.json[1].name }}"
   ignore_errors: true

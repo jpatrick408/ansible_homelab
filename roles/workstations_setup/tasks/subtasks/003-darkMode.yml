@@ -1,4 +1,4 @@
-# -----------------Set Gnome to Dark Mode------------------#
+# -----------------Set Gnome to Dark Mode------------------ #
 - name: Installing Python PSUtilities
   ansible.builtin.package:
     state: present
@@ -22,7 +22,7 @@
     value: "'prefer-dark'"
     state: present
 
-# -----------------Set Gnome Background------------------#
+# -----------------Set Gnome Background------------------ #
 - name: Creating Background Folder
   ansible.builtin.file:
     path: /usr/share/backgrounds/jsquared
@@ -33,7 +33,7 @@
 
 - name: Copying Dark Background Image
   ansible.builtin.copy:
-    src: {{ role_path }}/files/JSBackground.dark.png
+    src: "{{ role_path }}/files/JSBackground.dark.png"
     dest: /usr/share/backgrounds/jsquared/JSBackground.dark.png
     mode: "0644"
     owner: root
@@ -42,7 +42,7 @@
 
 - name: Copying Light Background Image
   ansible.builtin.copy:
-    src: {{ role_path }}/files/JSBackground.light.png
+    src: "{{ role_path }}/files/JSBackground.light.png"
     dest: /usr/share/backgrounds/jsquared/JSBackground.light.png
     mode: "0644"
     owner: root
@@ -81,10 +81,10 @@
     value: "'000000'"
     state: present
 
-# -----------------Set Gnome Terminal Profile------------------#
+# -----------------Set Gnome Terminal Profile------------------ #
 - name: Copying terminal profile locally
   ansible.builtin.copy:
-    src: ../files/gnome-terminal-prfiles.dconf
+    src: "{{ role_path }}/files/gnome-terminal-prfiles.dconf"
     dest: /home/{{ invoking_user }}/.tmp/gnome-terminal-prfiles.dconf
     mode: "0755"
     owner: "{{ invoking_user }}"

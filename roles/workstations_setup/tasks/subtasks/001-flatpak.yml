@@ -1,17 +1,3 @@
-# - name: Importing Free RPM Fusion key (Fedora Based Systems)
-#  ansible.builtin.rpm_key:
-#    state: present
-#    key: https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
-#    key: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-free-fedora-2020
-#  when: ansible_facts['os_family'] == "RedHat"
-
-# - name: Importing Non-Free RPM Fusion Key (Fedora Based Systems)
-#  ansible.builtin.rpm_key:
-#    state: present
-#    key: https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
-#    #key: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-nonfree-fedora-2020
-#  when: ansible_facts['os_family'] == "RedHat"
-
 - name: Installing Flatpak (Debian Based)
   ansible.builtin.apt:
     name:

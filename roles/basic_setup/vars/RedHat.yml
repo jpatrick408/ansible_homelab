@@ -1,5 +1,5 @@
 basic_setup_amd_microcode_package: linux-firmware
-lm_sensors_package: lm_sensors
-nfs_client_package: nfs-utils
-openssh_service: ssh
-py_psutils: python-psutil
+basic_setup_lm_sensors_package: lm_sensors
+basic_setup_nfs_client_package: nfs-utils
+basic_setup_openssh_service: ssh
+basic_setup_py_psutils: python-psutil

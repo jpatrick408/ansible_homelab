@@ -36,14 +36,14 @@
 - name: Setting up RPM Fusion Free
   tags: always
   ansible.builtin.dnf:
-    name: https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ansible_distribution_major_version}}.noarch.rpm
+    name: https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ ansible_distribution_major_version }}.noarch.rpm
     state: present
   when: ansible_facts['os_family'] == "RedHat"
 
 - name: Setting up RPM Fusion Non-Free
   tags: always
   ansible.builtin.dnf:
-    name: https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ansible_distribution_major_version}}.noarch.rpm
+    name: https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ ansible_distribution_major_version }}.noarch.rpm
     state: present
   when: ansible_facts['os_family'] == "RedHat"
 
@@ -59,7 +59,7 @@
 - name: Copying Bash File
   tags: always
   ansible.builtin.copy:
-    src: {{ role_path }}/files/bashrc
+    src: "{{ role_path }}/files/bashrc"
     dest: /home/{{ invoking_user }}/.bashrc
     mode: "0660"
     owner: "{{ invoking_user }}"

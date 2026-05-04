@@ -1,6 +1,6 @@
 basic_setup_amd_microcode_package: amd64-microcode
 basic_setup_intel_microcode_package: intel-microcode
-lm_sensors_package: lm-sensors
-nfs_client_package: nfs-common
-openssh_service: ssh
-py_psutils: python3-psutil
+basic_setup_lm_sensors_package: lm-sensors
+basic_setup_nfs_client_package: nfs-common
+basic_setup_openssh_service: ssh
+basic_setup_py_psutils: python3-psutil
