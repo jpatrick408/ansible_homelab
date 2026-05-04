@@ -7,6 +7,7 @@
   when: ansible_facts['os_family'] == "Debian"
 
 - name: Setting Color Theme to Dark Mode
+  become: true
   become_user: "{{ invoking_user }}"
   community.general.dconf:
     key: "/org/gnome/desktop/interface/color-scheme"
@@ -14,6 +15,7 @@
     state: present
 
 - name: Setting GTK-Theme to Dark Mode
+  become: true
   become_user: "{{ invoking_user }}"
   community.general.dconf:
     key: "/org/gnome/desktop/interface/trk-theme"
@@ -31,7 +33,7 @@
 
 - name: Copying Dark Background Image
   ansible.builtin.copy:
-    src: ../files/JSBackground.dark.png
+    src: {{ role_path }}/files/JSBackground.dark.png
     dest: /usr/share/backgrounds/jsquared/JSBackground.dark.png
     mode: "0644"
     owner: root
@@ -40,7 +42,7 @@
 
 - name: Copying Light Background Image
   ansible.builtin.copy:
-    src: ../files/JSBackground.light.png
+    src: {{ role_path }}/files/JSBackground.light.png
     dest: /usr/share/backgrounds/jsquared/JSBackground.light.png
     mode: "0644"
     owner: root
@@ -48,6 +50,7 @@
     decrypt: true
 
 - name: Setting Light Background Image
+  become: true
   become_user: "{{ invoking_user }}"
   community.general.dconf:
     key: "/org/gnome/desktop/background/picture-uri"
@@ -55,6 +58,7 @@
     state: present
 
 - name: Setting Dark Background Image
+  become: true
   become_user: "{{ invoking_user }}"
   community.general.dconf:
     key: "/org/gnome/desktop/background/picture-uri-dark"
@@ -62,6 +66,7 @@
     state: present
 
 - name: Setting Background to Scale Image
+  become: true
   become_user: "{{ invoking_user }}"
   community.general.dconf:
     key: "/org/gnome/desktop/background/picture-options"
@@ -69,6 +74,7 @@
     state: present
 
 - name: Setting Background Color
+  become: true
   become_user: "{{ invoking_user }}"
   community.general.dconf:
     key: "/org/gnome/desktop/background/primary-color"

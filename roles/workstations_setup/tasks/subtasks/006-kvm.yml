@@ -1,6 +1,6 @@
 - name: Installing Kernel Stub (Pop_OS! only)
   ansible.builtin.package:
-    state: latest
+    state: present
     name:
       - kernelstub
   when:
@@ -9,16 +9,18 @@
 - name: Enabling Virtualization at Boot (Pop_OS! only / AMD CPU)
   ansible.builtin.command:
     cmd: kernelstub --add-options "amd_iommu=on"
-  when:
+  changed_when:
     - ansible_facts['distribution'] == "Pop!_OS"
     - ansible_facts['processor'] == "AuthenticAMD"
+    - "'amd_iommu=on' not in _kernelstub.stdout"
 
 - name: Enabling Virtualization at Boot (Pop_OS! only / Intel CPU)
   ansible.builtin.command:
     cmd: kernelstub --add-options "intel_iommu=on"
-  when:
+  changed_when:
     - ansible_facts['distribution'] == "Pop!_OS"
     - ansible_facts['processor'] == "GenuineIntel"
+    - "'intel_iommu=on' not in _kernelstub.stdout"
 
 - name: Enabling Virtualization at Boot (Grub based / AMD CPU)
   ansible.builtin.lineinfile:
@@ -53,7 +55,7 @@
   when:
     - ansible_facts['os_family'] == "RedHat"
 
-- name: Updating Grub (Fedora Debia)
+- name: Updating Grub (Debian Based)
   ansible.builtin.command:
     cmd: update-grub
   when:
@@ -95,13 +97,13 @@
   ansible.builtin.user:
     name: "{{ invoking_user }}"
     groups: kvm,input,libvirt
-    append: yes
+    append: true
 
 - name: Modifying SELinux's Qemu config (Fedora Based)
   ansible.builtin.lineinfile:
     path: /etc/libvirt/qemu.conf
     backup: true
-    search_string: #security_default_confined = 1
+    search_string: # security_default_confined = 1
     line: security_default_confined = 0
     owner: root
     group: root

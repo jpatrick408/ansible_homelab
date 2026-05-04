@@ -5,4 +5,3 @@
     owner: "{{ invoking_user }}"
     group: "{{ invoking_user }}"
     mode: "0770"
-    

@@ -1,6 +1,6 @@
 - name: Installing Laptop Apps
   ansible.builtin.package:
-    state: latest
+    state: present
     name:
       - btop
       - fakeroot

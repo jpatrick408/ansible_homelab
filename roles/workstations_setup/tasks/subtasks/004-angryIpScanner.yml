@@ -1,28 +1,28 @@
 - name: Lookup the Latest Version of AngryIP Scanner
   ansible.builtin.uri:
     url: https://api.github.com/repos/angryip/ipscan/tags
-    return_content: yes
+    return_content: true
     status_code: 200
     body_format: json
-  register: result
+  register: workstations_setup_result
 
 - name: Download the Latest Version of AngryIP Scanner (Fedora Based Systems)
   ansible.builtin.get_url:
-    url: https://github.com/angryip/ipscan/releases/download/{{ result.json[0].name }}/ipscan-{{ result.json[0].name }}-1.x86_64.rpm
+    url: https://github.com/angryip/ipscan/releases/download/{{ workstations_setup_result.json[0].name }}/ipscan-{{ workstations_setup_result.json[0].name }}-1.x86_64.rpm
     dest: /home/{{ invoking_user }}/.tmp/IPScan.rpm
-    mode: 0777
+    mode: "0777"
   when: ansible_facts['os_family'] == "RedHat"
 
 - name: Downloaded the Latest Version of Angry IP Scanner (DebianBased Systems)
   ansible.builtin.get_url:
-    url: https://github.com/angryip/ipscan/releases/download/3.9.1/ipscan_{{ result.json[0].name }}_all.deb
+    url: https://github.com/angryip/ipscan/releases/download/3.9.1/ipscan_{{ workstations_setup_result.json[0].name }}_all.deb
     dest: /home/{{ invoking_user }}/.tmp/IPScan.deb
-    mode: 0777
+    mode: "0777"
   when: ansible_facts['os_family'] == "Debian"
 
 - name: Installing Open JDK Runtime (Debian Based Systems)
   ansible.builtin.package:
-    state: latest
+    state: present
     name: default-jre
   when: ansible_facts['os_family'] == "Debian"
 
