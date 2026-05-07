@@ -92,4 +92,5 @@
 
 - name: Importing Profile
   ansible.builtin.shell: dconf load /org/gnome/terminal/legacy/profiles:/ < /home/"{{ invoking_user }}"/.tmp/gnome-terminal-prfiles.dconf
+  become: true
   become_user: "{{ invoking_user }}"

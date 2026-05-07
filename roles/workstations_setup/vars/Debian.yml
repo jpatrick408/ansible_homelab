@@ -1,2 +1,3 @@
 workstations_setup_py_psutils: workstations_setup_python3-psutil
 workstations_setup_steam_package: workstations_setup_steam-installer
+getHubScan: https://github.com/angryip/ipscan/releases/download/

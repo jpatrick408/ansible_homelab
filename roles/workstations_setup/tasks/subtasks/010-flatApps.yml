@@ -7,6 +7,4 @@
       - org.onlyoffice.desktopeditors
       - com.protonvpn.www
       - com.heroicgameslauncher.hgl
-#      - io.github.ungoogled_software.ungoogled_chromium
-#      - net.davidotek.pupgui2
     state: present
