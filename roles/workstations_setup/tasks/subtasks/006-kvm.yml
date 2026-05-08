@@ -51,14 +51,14 @@
     - ansible_facts['processor'][1] == "GenuineIntel"
 
 - name: Checking IOMMU in GRUB (AMD)
-  ansible.builtin.shell: cat /etc/default/grub | grep -o "amd_iommu"
-  register: workstations_setup_iommu_check
-  changed_when: "'amd_iommu=on' in workstations_setup_iommu_check.stdout"
+  ansible.builtin.shell: set -o pipefail; cat /etc/default/grub | grep -o "amd_iommu"
+  register: workstations_setup_iommu_check_amd # Renamed register variable!
+  changed_when: "'amd_iommu=on' in workstations_setup_iommu_check_amd.stdout"
 
 - name: Checking IOMMU in GRUB (Intel)
-  ansible.builtin.shell: cat /etc/default/grub | grep -o "intel_iommu"
-  register: workstations_setup_iommu_check
-  changed_when: "'intel_iommu=on' in workstations_setup_iommu_check.stdout"
+  ansible.builtin.shell: set -o pipefail; cat /etc/default/grub | grep -o "intel_iommu"
+  register: workstations_setup_iommu_check_intel # Renamed register variable!
+  changed_when: "'intel_iommu=on' in workstations_setup_iommu_check_intel.stdout"
 
 - name: Updating Grub (Fedora Based)
   ansible.builtin.command:
