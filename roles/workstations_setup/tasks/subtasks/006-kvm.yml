@@ -24,6 +24,16 @@
     - ansible_facts['distribution'] == "Pop!_OS"
     - ansible_facts['processor'] == "GenuineIntel"
 
+- name: Checking IOMMU in GRUB (AMD)
+  ansible.builtin.shell: cat /etc/default/grub | grep -o "amd_iommu"
+  register: workstations_setup_iommu_check
+  changed_when: "amd_iommu=on' in workstations_setup_iommu_check.stdout"
+
+- name: Checking IOMMU in GRUB (Intel)
+  ansible.builtin.shell: cat /etc/default/grub | grep -o "intel_iommu"
+  register: workstations_setup_iommu_check
+  changed_when: "intel_iommu=on' in workstations_setup_iommu_check.stdout"
+
 - name: Enabling Virtualization at Boot (Grub based / AMD CPU)
   ansible.builtin.lineinfile:
     path: /etc/default/grub
@@ -49,18 +59,6 @@
   when:
     - ansible_facts['distribution'] != "Pop!_OS"
     - ansible_facts['processor'][1] == "GenuineIntel"
-
-- name: Checking IOMMU in GRUB (AMD)
-  ansible.builtin.shell: cat /etc/default/grub | grep -o "amd_iommu"
-  register: workstations_setup_iommu_check
-  changed_when: "amd_iommu=on' in workstations_setup_iommu_check.stdout"
-  when: ansible_facts['processor'][1] == "AuthenticAMD"
-
-- name: Checking IOMMU in GRUB (Intel)
-  ansible.builtin.shell: cat /etc/default/grub | grep -o "intel_iommu"
-  register: workstations_setup_iommu_check
-  changed_when: "intel_iommu=on' in workstations_setup_iommu_check.stdout"
-  when: ansible_facts['processor'][1] == "GenuineIntel"
 
 - name: Updating Grub (Fedora Based)
   ansible.builtin.command:
