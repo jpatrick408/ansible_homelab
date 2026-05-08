@@ -89,8 +89,10 @@
     mode: "0755"
     owner: "{{ invoking_user }}"
     group: "{{ invoking_user }}"
+  register: workstations_setup_copy_profile
 
 - name: Importing Profile
   ansible.builtin.shell: dconf load /org/gnome/terminal/legacy/profiles:/ < /home/"{{ invoking_user }}"/.tmp/gnome-terminal-prfiles.dconf
   become: true
   become_user: "{{ invoking_user }}"
+  changed_when: workstations_setup_copy_profile.changed
