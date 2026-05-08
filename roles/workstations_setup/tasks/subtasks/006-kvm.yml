@@ -53,20 +53,21 @@
 - name: Checking IOMMU in GRUB (AMD)
   ansible.builtin.shell: cat /etc/default/grub | grep -o "amd_iommu"
   register: workstations_setup_iommu_check
-  # failed_when: iommu_check.rc > 1
   changed_when: "amd_iommu=on' in workstations_setup_iommu_check.stdout"
+  when: ansible_facts['processor'][1] == "AuthenticAMD"
 
 - name: Checking IOMMU in GRUB (Intel)
   ansible.builtin.shell: cat /etc/default/grub | grep -o "intel_iommu"
   register: workstations_setup_iommu_check
-  # failed_when: iommu_check.rc > 1
   changed_when: "intel_iommu=on' in workstations_setup_iommu_check.stdout"
+  when: ansible_facts['processor'][1] == "GenuineIntel"
 
 - name: Updating Grub (Fedora Based)
   ansible.builtin.command:
     cmd: grub2-mkconfig -o /boot/grub2/grub.cfg
   changed_when:
     - workstations_setup_iommu_check == 1
+  when:
     - ansible_facts['os_family'] == "RedHat"
 
 - name: Updating Grub (Debian Based)
@@ -74,6 +75,7 @@
     cmd: update-grub
   changed_when:
     - iommu_check == 1
+  when:
     - ansible_facts['os_family'] == "Debian"
     - ansible_facts['distribution'] != "Pop!_OS"
 
@@ -81,7 +83,7 @@
   ansible.builtin.dnf:
     name: '@virtualization'
     state: present
-  changed_when:
+  when:
     - ansible_facts['os_family'] == "RedHat"
 
 - name: Installing Virtual Packages (Debian Based)
