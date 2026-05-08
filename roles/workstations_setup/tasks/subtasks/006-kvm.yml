@@ -49,13 +49,13 @@
     - ansible_facts['processor'][1] == "GenuineIntel"
 
 - name: Checking IOMMU in GRUB (AMD)
-  ansible_builtin_shell: cat /etc/default/grub | grep -o "amd_iommu"
+  ansible.builtin.shell: cat /etc/default/grub | grep -o "amd_iommu"
   register: workstations_setup_iommu_check
   # failed_when: iommu_check.rc > 1
   changed_when: "amd_iommu=on' in workstations_setup_iommu_check.stdout"
 
 - name: Checking IOMMU in GRUB (Intel)
-  ansible_builtin_shell: cat /etc/default/grub | grep -o "intel_iommu"
+  ansible.builtin.shell: cat /etc/default/grub | grep -o "intel_iommu"
   register: workstations_setup_iommu_check
   # failed_when: iommu_check.rc > 1
   changed_when: "intel_iommu=on' in workstations_setup_iommu_check.stdout"
