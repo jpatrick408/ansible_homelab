@@ -1,0 +1,111 @@
+- name: Installing Kernel Stub (Pop_OS! only)
+  ansible.builtin.package:
+    state: present
+    name:
+      - kernelstub
+  when:
+    - ansible_facts['distribution'] == "Pop!_OS"
+
+- name: Enabling Virtualization at Boot (Pop_OS! only / AMD CPU)
+  ansible.builtin.command:
+    cmd: kernelstub --add-options "amd_iommu=on"
+  changed_when:
+    - ansible_facts['distribution'] == "Pop!_OS"
+    - ansible_facts['processor'] == "AuthenticAMD"
+    - "'amd_iommu=on' not in _kernelstub.stdout"
+
+- name: Enabling Virtualization at Boot (Pop_OS! only / Intel CPU)
+  ansible.builtin.command:
+    cmd: kernelstub --add-options "intel_iommu=on"
+  changed_when:
+    - ansible_facts['distribution'] == "Pop!_OS"
+    - ansible_facts['processor'] == "GenuineIntel"
+    - "'intel_iommu=on' not in _kernelstub.stdout"
+
+- name: Enabling Virtualization at Boot (Grub based / AMD CPU)
+  ansible.builtin.lineinfile:
+    path: /etc/default/grub
+    backup: true
+    search_string: GRUB_CMDLINE_LINUX="rhgb quiet"
+    line: GRUB_CMDLINE_LINUX="rhgb quiet amd_iommu=on"
+    owner: root
+    group: root
+    mode: '0644'
+  when:
+    - ansible_facts['distribution'] != "Pop!_OS"
+    - ansible_facts['processor'][1] == "AuthenticAMD"
+
+- name: Enabling Virtualization at Boot (Grub based / Intel CPU)
+  ansible.builtin.lineinfile:
+    path: /etc/default/grub
+    backup: true
+    search_string: GRUB_CMDLINE_LINUX="rhgb quiet"
+    line: GRUB_CMDLINE_LINUX="rhgb quiet intel_iommu=on"
+    owner: root
+    group: root
+    mode: '0644'
+  when:
+    - ansible_facts['distribution'] != "Pop!_OS"
+    - ansible_facts['processor'][1] == "GenuineIntel"
+
+- name: Updating Grub (Fedora Based)
+  ansible.builtin.command:
+    cmd: grub2-mkconfig -o /boot/grub2/grub.cfg
+  when:
+    - ansible_facts['os_family'] == "RedHat"
+
+- name: Updating Grub (Debian Based)
+  ansible.builtin.command:
+    cmd: update-grub
+  when:
+    - ansible_facts['os_family'] == "Debian"
+    - ansible_facts['distribution'] != "Pop!_OS"
+
+- name: Installing Virtual Packages (Fedora Based)
+  ansible.builtin.dnf:
+    name: '@virtualization'
+    state: present
+  when:
+    - ansible_facts['os_family'] == "RedHat"
+
+- name: Installing Virtual Packages (Debian Based)
+  ansible.builtin.apt:
+    name:
+      - qemu-kvm
+      - qemu-utils
+     # - libvirt
+      - libvirt-daemon-system
+      - libvirt-clients
+      - bridge-utils
+      - virtinst
+      - virt-manager
+      - guestfs-tools
+      - ovmf
+#      - input
+    state: present
+  when:
+    - ansible_facts['os_family'] == "Debian"
+
+- name: Enabling libvirtd
+  ansible.builtin.systemd_service:
+    name: libvirtd
+    state: started
+    enabled: true
+
+- name: Adding user to groups for virtualization
+  ansible.builtin.user:
+    name: "{{ invoking_user }}"
+    groups: kvm,input,libvirt
+    append: true
+
+- name: Modifying SELinux's Qemu config (Fedora Based)
+  ansible.builtin.lineinfile:
+    path: /etc/libvirt/qemu.conf
+    backup: true
+    search_string: # security_default_confined = 1
+    line: security_default_confined = 0
+    owner: root
+    group: root
+    mode: '0600'
+  when:
+    - ansible_facts['os_family'] == "RedHat"
