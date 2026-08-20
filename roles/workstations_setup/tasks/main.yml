@@ -9,8 +9,8 @@
      ansible.builtin.import_tasks: subtasks/002-apps.yml
    - name: Importing Subtask Dark Mode
      ansible.builtin.import_tasks: subtasks/003-darkMode.yml
-   - name: Importing Subtask KVM
-     ansible.builtin.import_tasks: subtasks/006-kvm.yml
+   #- name: Importing Subtask KVM
+   #  ansible.builtin.import_tasks: subtasks/006-kvm.yml
    - name: Importing Subtask Theia IDE
      ansible.builtin.import_tasks: subtasks/007-theia.yml
    - name: Importing Subtask Flat Apps
