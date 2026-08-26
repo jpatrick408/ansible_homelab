@@ -2,18 +2,18 @@
   ansible.builtin.package:
     state: present
     name:
-      - btop
-      - fakeroot
+      #- btop
+      #- fakeroot
       - gnome-tweaks
       - gparted
-      - psutils
-      - python3-psutil
+      #- psutils
+      #- python3-psutil
       - syncthing
       - vlc
       - python3-vlc
       - wine
       - winetricks
-      - asunder
+      #- asunder
 #      - keeperpasswordmanager
 #      - gamemode
 #      - remmina
@@ -34,6 +34,6 @@
 
 - name: Installing Jellyfin client
   community.general.flatpak:
-    name: com.github.iwalton3.jellyfin-media-player
+    name: org.jellyfin.JellyfinDesktop
     remote: flathub
     state: present
