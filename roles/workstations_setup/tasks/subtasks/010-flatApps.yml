@@ -13,4 +13,5 @@
       - com.moonlight_stream.Moonlight
       - org.onlyoffice.desktopeditors
       - org.raspberrypi.rpi-imager
+      - ai.storyteller.artcraft-launcher
     state: present

@@ -12,3 +12,9 @@
     state: present
     flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
   when: ansible_facts['os_family'] == "Debian"
+
+- name: Adding Artcraft Flapak Repo
+  community.general.flatpak:
+    name: ArtCraft OCI Flatpak Repository
+    state: preseent
+    flatpakrepo_url: artcraft-oci https://getartcraft.com/artcraft-oci.flatpakrepo
