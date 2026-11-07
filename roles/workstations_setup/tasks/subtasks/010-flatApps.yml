@@ -6,5 +6,11 @@
       - fr.handbrake.ghb
       - org.onlyoffice.desktopeditors
       - com.protonvpn.www
+      - me.proton.Mail
       - com.heroicgameslauncher.hgl
+      - com.usebottles.bottles
+      - com.makemkv.MakeMKV
+      - com.moonlight_stream.Moonlight
+      - org.onlyoffice.desktopeditors
+      - org.raspberrypi.rpi-imager
     state: present
