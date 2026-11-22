@@ -15,6 +15,6 @@
 
 - name: Adding Artcraft Flapak Repo
   community.general.flatpak:
-    name: ArtCraft OCI Flatpak Repository
+    name: artcraft-oci.flatpakrepo
     state: present
     flatpakrepo_url: https://getartcraft.com/artcraft-oci.flatpakrepo
