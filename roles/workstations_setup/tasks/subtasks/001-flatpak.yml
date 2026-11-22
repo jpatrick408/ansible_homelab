@@ -17,4 +17,4 @@
   community.general.flatpak:
     name: ArtCraft OCI Flatpak Repository
     state: present
-    flatpakrepo_url: artcraft-oci https://getartcraft.com/artcraft-oci.flatpakrepo
+    flatpakrepo_url: https://getartcraft.com/artcraft-oci.flatpakrepo
