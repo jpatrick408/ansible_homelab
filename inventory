@@ -18,3 +18,12 @@ workstations:
   children:
     linuxLaptops:
     linuxDesktops:
+
+cannibal:
+  children:
+    lecter:
+    graham:
+    bloom:
+    crawford:
+    kats
+    reddraggon:
