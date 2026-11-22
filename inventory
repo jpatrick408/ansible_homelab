@@ -17,10 +17,10 @@ appleLaptops:
 workstations:
   children:
     linuxLaptops:
-    linuxDesktops:
+    linuxDesktop:
 
 cannibal:
-  children:
+  hosts:
     lecter:
     graham:
     bloom:
