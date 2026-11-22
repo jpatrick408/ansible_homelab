@@ -8,7 +8,7 @@ linuxLaptops:
 
 linuxDesktop:
   hosts:
-    jsoffice:
+    jsDesktop:
 
 appleLaptops:
   hosts:
